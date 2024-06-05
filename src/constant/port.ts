@@ -4,8 +4,9 @@
 //   throw dotenv.config().error;
 // }
 
-// export const PORT = process.env.PORT || 3500;
-export const PORT = 4000;
+export const PORT = process.env.PORT || 3500;
+
+// export const PORT = 4000;
 // if (PORT) {
 //   throw new Error("PORT is not defined");
 // }

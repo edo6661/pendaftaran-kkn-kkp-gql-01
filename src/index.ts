@@ -1,8 +1,5 @@
-// import dotenv from "dotenv";
-// dotenv.config();
-// if (dotenv.config().error) {
-//   throw dotenv.config().error;
-// }
+import "dotenv/config";
+
 import express from "express";
 import cors from "cors";
 import { PORT } from "./constant/port";
@@ -37,6 +34,6 @@ app.listen(PORT, () => {
     "Server is running on http://localhost:" +
       PORT +
       " NODE_ENV " +
-      "development"
+      process.env.NODE_ENV || "development"
   );
 });
