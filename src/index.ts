@@ -37,6 +37,6 @@ app.listen(PORT, () => {
     "Server is running on http://localhost:" +
       PORT +
       " NODE_ENV " +
-      process.env.NODE_ENV
+      process.env.NODE_ENV || "development"
   );
 });
