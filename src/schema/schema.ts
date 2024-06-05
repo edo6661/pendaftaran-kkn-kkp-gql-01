@@ -7,7 +7,7 @@ const schema = buildSchema(`#graphql
 `);
 export const root = {
   hello: () => {
-    return "Hello World!";
+    return "Hello World test!";
   },
 };
 export default schema;
