@@ -1,8 +1,15 @@
 [build]
+  command = "npm install && npm run build"
   functions = "dist/netlify/functions"
 
 [functions]
   included_files = ["types/**/*"]
+
+[build.environment]
+  NODE_ENV = "production"
+  DATABASE_URL = "postgresql://edo:kimq5WQ2bV0M2lQPmcvOug@drag-drop-8710.8nk.gcp-asia-southeast1.cockroachlabs.cloud:26257/pendaftaran_kkn_kkp?sslmode=verify-full"
+  PORT = "4000"
+
 
 [[redirects]]
   from = "/*"
