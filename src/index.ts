@@ -1,8 +1,8 @@
-import dotenv from "dotenv";
-dotenv.config();
-if (dotenv.config().error) {
-  throw dotenv.config().error;
-}
+// import dotenv from "dotenv";
+// dotenv.config();
+// if (dotenv.config().error) {
+//   throw dotenv.config().error;
+// }
 import express from "express";
 import cors from "cors";
 import { PORT } from "./constant/port";
@@ -32,10 +32,11 @@ app.all(
   })
 );
 
-const NODE_ENV = process.env.NODE_ENV || "development";
-
 app.listen(PORT, () => {
   console.log(
-    "Server is running on http://localhost:" + PORT + " NODE_ENV " + NODE_ENV
+    "Server is running on http://localhost:" +
+      PORT +
+      " NODE_ENV " +
+      "development"
   );
 });

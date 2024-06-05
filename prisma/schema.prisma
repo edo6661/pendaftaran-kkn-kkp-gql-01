@@ -10,7 +10,8 @@ generator client {
 
 datasource db {
   provider = "cockroachdb"
-  url      = env("DATABASE_URL")
+  // url      = env("DATABASE_URL")
+  url      = "postgresql://edo:kimq5WQ2bV0M2lQPmcvOug@drag-drop-8710.8nk.gcp-asia-southeast1.cockroachlabs.cloud:26257/pendaftaran_kkn_kkp?sslmode=verify-full"
 }
 
 model Bau {
