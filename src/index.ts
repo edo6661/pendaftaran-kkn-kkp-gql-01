@@ -4,7 +4,7 @@ import express from "express";
 import cors from "cors";
 import { PORT } from "./constant/port";
 import { createHandler } from "graphql-http/lib/use/express";
-import schema, { root } from "./schema/schema";
+import schema from "@/schema/schema";
 const ruru = require("ruru/server");
 const { ruruHTML } = ruru;
 export const app = express();
@@ -25,7 +25,6 @@ app.all(
   "/graphql",
   createHandler({
     schema,
-    rootValue: root,
   })
 );
 
