@@ -32,11 +32,10 @@ app.all(
   })
 );
 
+const NODE_ENV = process.env.NODE_ENV || "development";
+
 app.listen(PORT, () => {
   console.log(
-    "Server is running on http://localhost:" +
-      PORT +
-      " NODE_ENV " +
-      process.env.NODE_ENV || "development"
+    "Server is running on http://localhost:" + PORT + " NODE_ENV " + NODE_ENV
   );
 });
