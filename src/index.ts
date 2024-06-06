@@ -51,7 +51,7 @@ app.use(passport.session());
   await server.start();
 
   app.use(
-    "/",
+    "/graphql",
     cors<cors.CorsRequest>({
       credentials: true,
     }),
