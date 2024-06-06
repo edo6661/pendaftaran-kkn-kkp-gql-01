@@ -54,6 +54,8 @@ app.use(passport.session());
     "/graphql",
     cors<cors.CorsRequest>({
       credentials: true,
+      // ! allow all origin
+      origin: "*",
     }),
     express.json(),
     cookieParser(),
