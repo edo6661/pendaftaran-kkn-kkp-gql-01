@@ -78,9 +78,15 @@ export const userResolver = {
         if (!context.isAuthenticated())
           throw new Error("User is not authenticated");
         await context.logout();
-        req.session.destroy((err) => {
-          if (err) throw new Error("Failed to sign out");
+
+        req.logout((err) => {
+          if (err) throw new Error("Failed to logout");
         });
+
+        req.session.destroy((err) => {
+          if (err) throw new Error("Failed to destroy session");
+        });
+
         res.clearCookie("connect.sid");
         console.log("COOKIE CLEARED");
         return {
