@@ -1,4 +1,5 @@
 import { db } from "@/lib/db";
+import { IContext } from "@/types/express";
 
 export const bauResolver = {
   Query: {
@@ -12,7 +13,13 @@ export const bauResolver = {
     },
   },
   Mutation: {
-    createBau: async (_parent: any, { name }: { name: string }) => {
+    createBau: async (
+      _parent: any,
+      { name }: { name: string },
+      context: IContext
+    ) => {
+      if (!context.req.user)
+        throw new Error("Unauthorized failed to create bau");
       return await db.bau.create({
         data: {
           name,

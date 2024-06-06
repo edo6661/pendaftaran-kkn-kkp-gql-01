@@ -7,6 +7,7 @@ import { comparePassword, hashPassword } from "./hash";
 export const configurePassport = async () => {
   passport.serializeUser((user, done) => {
     console.log("SERIALIZE USER", user);
+    if (!user) throw new Error("User not found");
     done(null, user);
   });
   passport.deserializeUser(async (user: User, done) => {
@@ -15,6 +16,7 @@ export const configurePassport = async () => {
       const existingUser = await db.user.findUnique({
         where: { id: user.id },
       });
+      if (!existingUser) throw new Error("User not found");
       done(null, existingUser);
     } catch (err) {
       done(err, null);
@@ -22,9 +24,8 @@ export const configurePassport = async () => {
   });
   passport.use(
     new GraphQLLocalStrategy(async (username, password, done) => {
-      console.log("GRAPHQLLOCAL STRATEGY", username, password);
-      const hashedPassword = await hashPassword(password as string);
-      const stringifyUsername = username as string;
+      console.log("PASSPORT STRATEGY", await username, await password);
+      const stringifyUsername = (await username) as string;
       try {
         const user = await db.user.findFirst({
           where: {
@@ -32,8 +33,12 @@ export const configurePassport = async () => {
           },
         });
         if (!user) throw new Error("User not found");
-        const isPasswordValid = comparePassword(hashedPassword, user.password);
+        const isPasswordValid = comparePassword(
+          (await password) as string,
+          user.password
+        );
         if (!isPasswordValid) throw new Error("Password is invalid");
+        return done(null, user);
       } catch (err) {
         return done(err);
       }
