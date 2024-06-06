@@ -19,6 +19,7 @@ interface IContext {
   res: express.Response;
   token?: string;
 }
+
 configurePassport();
 
 export const app = express();
@@ -41,7 +42,6 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-//
 (async function startServer() {
   const server = new ApolloServer<IContext>({
     typeDefs: mergedTypedef,
@@ -68,5 +68,5 @@ app.use(passport.session());
   await new Promise<void>((resolve) =>
     httpServer.listen({ port: PORT }, resolve)
   );
-  console.log(`🚀 Server ready at http://localhost:4000/`);
+  console.log(`🚀 Server ready at http://localhost:4000/graphql`);
 })();

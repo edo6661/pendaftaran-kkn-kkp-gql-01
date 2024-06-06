@@ -1,5 +1,5 @@
 import { db } from "@/lib/db";
-import { comparePassword, hashPassword } from "@/lib/hash";
+import { comparePassword } from "@/lib/hash";
 import { IContext } from "@/types/express";
 import { Role } from "@prisma/client";
 
@@ -32,13 +32,14 @@ export const userResolver = {
     },
     authUser: async (_parent: any, _args: any, context: IContext) => {
       try {
-        if (!context)
-          throw new Error("No context found failed to get authUser");
-
-        return await context.getUser();
+        if (!context || !context.isAuthenticated()) {
+          throw new Error("User not authenticated");
+        }
+        console.log(context);
+        return context.getUser();
       } catch (err) {
         console.error(err);
-        throw new Error("Failed to get user");
+        throw new Error("Failed to get authenticated user");
       }
     },
   },
@@ -50,9 +51,7 @@ export const userResolver = {
     ) => {
       const { username, password } = signInInput;
       const existingUser = await db.user.findFirst({
-        where: {
-          username,
-        },
+        where: { username },
       });
       if (!existingUser) throw new Error("User not found");
       const matchPassword = await comparePassword(
@@ -70,32 +69,6 @@ export const userResolver = {
       console.log("INFO FROM RESOLVER", info);
       console.log("USER FROM RESOLVER", user);
       return user;
-    },
-    //
-    signUp: async (
-      _parent: any,
-      { signUpInput }: { signUpInput: SignUpInterface },
-      context: IContext
-    ) => {
-      const { username, password, email, role, profilePhoto } = signUpInput;
-      const hashedPassword = await hashPassword(password);
-      const { user } = await context.authenticate("graphql-local", {
-        // @ts-ignore
-        username,
-        password: hashedPassword,
-      });
-
-      await context.login(user!);
-
-      return await db.user.create({
-        data: {
-          username,
-          password: hashedPassword,
-          email,
-          role,
-          profilePhoto,
-        },
-      });
     },
     signOut: async (_parent: any, _args: any, context: IContext) => {
       if (!context) throw new Error("No context found failed to logout");
