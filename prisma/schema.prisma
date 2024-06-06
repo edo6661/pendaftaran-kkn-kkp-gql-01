@@ -17,3 +17,22 @@ model Bau {
   id String @default(uuid()) @id
   name String
 }
+model User {
+  id String @default(uuid()) @id
+  username String 
+  email String? 
+  password String
+  profilePhoto String @default("https://i.pinimg.com/564x/fc/68/c7/fc68c7853d0b5ecd72df224a7fe57071.jpg")
+  role Role @default(MAHASISWA)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([username, email])
+}
+
+enum Role {
+  ADMIN
+  MAHASISWA
+  DOSEN
+}

@@ -1,38 +1,32 @@
 import "dotenv/config";
-
 import express from "express";
 import cors from "cors";
+import cookieParser from "cookie-parser";
+import { ApolloServer } from "@apollo/server";
+import { startStandaloneServer } from "@apollo/server/standalone";
+import { mergedTypedef } from "./typeDef/mergedTypedef";
+import { mergedResolvers } from "./resolver/mergedResolvers";
 import { PORT } from "./constant/port";
-import { createHandler } from "graphql-http/lib/use/express";
-import schema from "@/schema/schema";
-const ruru = require("ruru/server");
-const { ruruHTML } = ruru;
-export const app = express();
 
+interface IContext {
+  token?: string;
+}
+
+const app = express();
 app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
-app.get("/", (_req, res) => {
-  res.type("html");
-  res.end(
-    ruruHTML({
-      endpoint: "/graphql",
-    })
-  );
+const server = new ApolloServer<IContext>({
+  typeDefs: mergedTypedef,
+  resolvers: mergedResolvers,
 });
-app.all(
-  "/graphql",
-  createHandler({
-    schema,
-  })
-);
 
-app.listen(PORT, () => {
-  console.log(
-    "Server is running on http://localhost:" +
-      PORT +
-      " NODE_ENV " +
-      process.env.NODE_ENV || "development"
-  );
-});
+(async function startServer() {
+  const { url } = await startStandaloneServer(server, {
+    listen: {
+      port: PORT,
+    },
+    context: async ({ req }) => ({ token: req.headers.token }),
+  });
+  console.log(`🚀 Server ready at ${url}`);
+})();

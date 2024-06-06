@@ -4,7 +4,7 @@
 //   throw dotenv.config().error;
 // }
 
-export const PORT = process.env.PORT || 3500;
+export const PORT = +process.env.PORT! || 4500;
 
 // export const PORT = 4000;
 // if (PORT) {
