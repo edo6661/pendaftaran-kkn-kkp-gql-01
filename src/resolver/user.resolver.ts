@@ -35,7 +35,6 @@ export const userResolver = {
         if (!context || !context.isAuthenticated()) {
           throw new Error("User not authenticated");
         }
-        console.log(context);
         return context.getUser();
       } catch (err) {
         console.error(err);
@@ -71,30 +70,18 @@ export const userResolver = {
       return user;
     },
     signOut: async (_parent: any, _args: any, context: IContext) => {
-      if (!context) throw new Error("No context found failed to logout");
-      // @ts-ignore
-      const { req, res } = context;
+      if (!context) throw new Error("No context found, failed to logout");
+
       try {
-        if (!context.isAuthenticated())
-          throw new Error("User is not authenticated");
         await context.logout();
-
-        req.logout((err) => {
-          if (err) throw new Error("Failed to logout");
+        context.req.session.destroy((err) => {
+          if (err) throw err;
         });
+        context.res.clearCookie("connect.sid");
 
-        req.session.destroy((err) => {
-          if (err) throw new Error("Failed to destroy session");
-        });
-
-        res.clearCookie("connect.sid");
-        console.log("COOKIE CLEARED");
-        return {
-          message: "Successfully signed out",
-        };
+        return { message: "Logged out successfully" };
       } catch (err) {
-        console.error(err);
-        throw new Error("Failed to sign out");
+        console.error("Error in logout:", err);
       }
     },
   },
