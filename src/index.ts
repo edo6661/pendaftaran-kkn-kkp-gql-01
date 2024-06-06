@@ -33,7 +33,7 @@ app.use(
     cookie: {
       maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
       httpOnly: true, // prevent client side js from reading the cookie (XSS attack)
-      sameSite: "lax", // csrf
+      sameSite: "none",
       secure: false,
     },
 
