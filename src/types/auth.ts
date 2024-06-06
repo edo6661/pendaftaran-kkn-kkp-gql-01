@@ -9,10 +9,10 @@ export interface UserWithoutPassword extends Omit<User, "password"> {}
 
 declare module "express-serve-static-core" {
   interface Request {
-    user?: UserWithoutPassword;
+    user?: User;
   }
 }
 
 export interface IGetUserAuthInfoRequest extends Request {
-  user: UserWithoutPassword;
+  user: User;
 }
