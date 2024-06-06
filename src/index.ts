@@ -55,7 +55,7 @@ app.use(passport.session());
     cors<cors.CorsRequest>({
       credentials: true,
       // ! allow all origin
-      origin: "*",
+      origin: "http://localhost:3000",
     }),
     express.json(),
     cookieParser(),
