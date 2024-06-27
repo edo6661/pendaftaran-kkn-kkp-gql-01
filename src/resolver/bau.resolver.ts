@@ -3,7 +3,8 @@ import { IContext } from "@/types/express";
 
 export const bauResolver = {
   Query: {
-    baus: async () => {
+    baus: async (_parent: any, _args: any, _context: IContext) => {
+      if (!_context.req.user) throw new Error("Unauthorized failed to get bau");
       return await db.bau.findMany();
     },
     bau: async (_parent: any, { id }: { id: string }) => {

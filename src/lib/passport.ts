@@ -4,15 +4,17 @@ import { db } from "./db";
 import { GraphQLLocalStrategy } from "graphql-passport";
 import { comparePassword } from "./hash";
 
+// ! CONSOLE.LOGS & THROW ERRORS ARE USED FOR DEBUGGING PURPOSES
+
 export const configurePassport = async () => {
   passport.serializeUser((user, done) => {
-    console.log("SERIALIZE USER", user);
+    // console.log("SERIALIZE USER", user);
     if (!user) throw new Error("User not found");
     done(null, user);
   });
 
   passport.deserializeUser(async (user: User, done) => {
-    console.log("DESERIALIZE USER", user);
+    // console.log("DESERIALIZE USER", user);
     try {
       const existingUser = await db.user.findUnique({
         where: { id: user.id },
@@ -26,7 +28,7 @@ export const configurePassport = async () => {
 
   passport.use(
     new GraphQLLocalStrategy(async (username, password, done) => {
-      console.log("PASSPORT STRATEGY", await username, await password);
+      // console.log("PASSPORT STRATEGY", await username, await password);
       const stringifyUsername = (await username) as string;
       try {
         const user = await db.user.findFirst({
