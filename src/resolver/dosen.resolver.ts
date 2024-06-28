@@ -5,7 +5,9 @@ import { db } from "@/lib/db";
 export const dosenResolver = {
   Query: {
     dosens: async () => {
-      return await db.dosen.findMany();
+      return await db.dosen.findMany({
+        include: { user: true },
+      });
     },
     getDosen: async (_parent: any, { id }: { id: string }) => {
       return await db.dosen.findUnique({
