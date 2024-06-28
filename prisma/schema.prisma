@@ -42,7 +42,7 @@ enum Role {
 
 model Admin {
   id String @default(cuid()) @id
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String @unique
   fullname String
   createdAt DateTime @default(now())
@@ -51,7 +51,7 @@ model Admin {
 
 model Mahasiswa {
   id String @default(cuid()) @id
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String @unique
   nim String @unique
   fullname String
@@ -102,7 +102,7 @@ model Konsentrasi {
 
 model Dosen {
   id String @default(cuid()) @id
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String @unique
   fullname String
   nidn String @unique

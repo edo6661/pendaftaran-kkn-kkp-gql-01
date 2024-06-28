@@ -27,5 +27,5 @@
     "allowImportingTsExtensions": true
   },
   "include": ["src/**/*", "prisma/migrations"],
-  "exclude": ["node_modules", "src/__tests__"]
+  "exclude": ["node_modules", "src/__tests__", "prisma/migrations/*"]
 }
