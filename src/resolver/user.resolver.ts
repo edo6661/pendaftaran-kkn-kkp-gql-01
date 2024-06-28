@@ -1,19 +1,8 @@
+import { userIncludeConfig } from "@/config/user.config";
 import { db } from "@/lib/db";
-import { comparePassword } from "@/lib/hash";
+import { comparePassword, hashPassword } from "@/lib/hash";
 import { IContext } from "@/types/express";
-import { Role } from "@prisma/client";
-
-interface SignUpInterface {
-  username: string;
-  password: string;
-  email: string;
-  role: Role;
-  profilePhoto: string;
-}
-interface SignInInput {
-  username: string;
-  password: string;
-}
+import { SignInInput, SignUpInput } from "@/types/user";
 
 export const userResolver = {
   Query: {
@@ -24,6 +13,7 @@ export const userResolver = {
       try {
         return await db.user.findUnique({
           where: { id },
+          include: userIncludeConfig,
         });
       } catch (error) {
         console.error(error);
@@ -69,6 +59,28 @@ export const userResolver = {
       console.log("USER FROM RESOLVER", user);
       return user;
     },
+    signUp: async (
+      _parent: any,
+      { signUpInput }: { signUpInput: SignUpInput }
+    ) => {
+      const { username, email, password } = signUpInput;
+      const existingUser = await db.user.findFirst({
+        where: { username },
+      });
+      if (existingUser) throw new Error("Username is already taken");
+
+      const hashedPassword = await hashPassword(password);
+
+      return await db.user.create({
+        data: {
+          username,
+          email,
+          password: hashedPassword,
+          role: "MAHASISWA",
+        },
+      });
+    },
+
     signOut: async (_parent: any, _args: any, context: IContext) => {
       if (!context) throw new Error("No context found, failed to logout");
 
@@ -83,6 +95,38 @@ export const userResolver = {
       } catch (err) {
         console.error("Error in logout:", err);
       }
+    },
+    updateUser: async (
+      _parent: any,
+      {
+        id,
+        data,
+      }: {
+        id: string;
+        data: {
+          username?: string;
+          email?: string;
+          password?: string;
+          profilePhoto?: string;
+          role?: string;
+        };
+      }
+    ) => {
+      const updatedData: any = { ...data };
+
+      if (data.password) {
+        updatedData.password = await hashPassword(data.password);
+      }
+
+      return await db.user.update({
+        where: { id },
+        data: updatedData,
+      });
+    },
+    deleteUser: async (_parent: any, { id }: { id: string }) => {
+      return await db.user.delete({
+        where: { id },
+      });
     },
   },
 };

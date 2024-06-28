@@ -3,6 +3,7 @@ import passport from "passport";
 import { db } from "./db";
 import { GraphQLLocalStrategy } from "graphql-passport";
 import { comparePassword } from "./hash";
+import { userIncludeConfig } from "@/config/user.config";
 
 // ! CONSOLE.LOGS & THROW ERRORS ARE USED FOR DEBUGGING PURPOSES
 
@@ -18,6 +19,7 @@ export const configurePassport = async () => {
     try {
       const existingUser = await db.user.findUnique({
         where: { id: user.id },
+        include: userIncludeConfig,
       });
       if (!existingUser) throw new Error("User not found");
       done(null, existingUser);
@@ -35,6 +37,7 @@ export const configurePassport = async () => {
           where: {
             username: stringifyUsername,
           },
+          include: userIncludeConfig,
         });
         if (!user) throw new Error("User not found");
         const isPasswordValid = await comparePassword(

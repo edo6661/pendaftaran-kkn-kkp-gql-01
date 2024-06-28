@@ -21,6 +21,9 @@ export const userTypedef = `#graphql
     signUp(signUpInput: SignUpInput!): User
     signIn(signInInput: SignInInput!): User
     signOut: LogoutResponse
+    updateUser(id: ID!, data: UpdateUserInput!): User
+    deleteUser(id: ID!): User
+
   }
   input SignUpInput {
     username: String!
@@ -36,4 +39,18 @@ export const userTypedef = `#graphql
   type LogoutResponse {
     message: String!
   }
+  input UpdateUserInput {
+    username: String
+    email: String
+    password: String
+    profilePhoto: String
+    role: Role
+  }
+  input SignUpInput {
+    username: String!
+    email: String
+    password: String!
+  }
+
+
 `;

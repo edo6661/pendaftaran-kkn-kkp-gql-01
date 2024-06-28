@@ -1,0 +1,135 @@
+type User {
+  id: ID!
+  username: String!
+  email: String
+  profilePhoto: String
+  role: Role!
+  admin: Admin
+  mahasiswa: Mahasiswa
+  dosen: Dosen
+  createdAt: String!
+  updatedAt: String!
+}
+
+enum Role {
+  ADMIN
+  MAHASISWA
+  DOSEN
+}
+
+type Admin {
+  id: ID!
+  user: User!
+  fullname: String!
+  createdAt: String!
+  updatedAt: String!
+}
+
+type Mahasiswa {
+  id: ID!
+  user: User!
+  nim: String!
+  fullname: String!
+  semester: Int!
+  prodi: ProgramStudi!
+  konsentrasi: Konsentrasi!
+  proyek: Proyek
+  laporans: [Laporan!]
+  biayaOperasionals: [BiayaOperasional!]
+  persyaratan: Persyaratan
+  pendaftaran: Pendaftaran
+  createdAt: String!
+  updatedAt: String!
+}
+
+type ProgramStudi {
+  id: ID!
+  name: String!
+  fakultas: Fakultas!
+  konsentrasi: [Konsentrasi!]
+  mahasiswa: [Mahasiswa!]
+  createdAt: String!
+  updatedAt: String!
+}
+
+type Fakultas {
+  id: ID!
+  name: String!
+  programStudi: [ProgramStudi!]
+  createdAt: String!
+  updatedAt: String!
+}
+
+type Konsentrasi {
+  id: ID!
+  name: String!
+  programStudi: ProgramStudi!
+  mahasiswa: [Mahasiswa!]
+  createdAt: String!
+  updatedAt: String!
+}
+
+type Dosen {
+  id: ID!
+  user: User!
+  fullname: String!
+  nidn: String!
+  proyek: Proyek!
+  createdAt: String!
+  updatedAt: String!
+}
+
+type Proyek {
+  id: ID!
+  name: String!
+  photo: String
+  pembimbing: Dosen
+  description: String!
+  mahasiswa: Mahasiswa
+  laporans: [Laporan!]
+  biayaOperasional: [BiayaOperasional!]
+  createdAt: String!
+  updatedAt: String!
+}
+
+type Laporan {
+  id: ID!
+  photo: String!
+  file: String!
+  proyek: Proyek!
+  mahasiswa: Mahasiswa!
+  createdAt: String!
+  updatedAt: String!
+}
+
+type Persyaratan {
+  id: ID!
+  keteranganSehat: Boolean!
+  keteranganPembayaran: Boolean!
+  keteranganOrangTua: Boolean!
+  keteranganKelakuanBaik: Boolean!
+  mahasiswa: Mahasiswa!
+  createdAt: String!
+  updatedAt: String!
+}
+
+type Pendaftaran {
+  id: ID!
+  mahasiswa: Mahasiswa!
+  tanggalPendaftaran: String!
+  buktiPembayaran: String!
+  createdAt: String!
+  updatedAt: String!
+}
+
+type BiayaOperasional {
+  id: ID!
+  proyek: Proyek!
+  biayaTransportasi: Int!
+  biayaProyek: Int!
+  biayaDll: Int!
+  tanggalBiaya: String!
+  mahasiswa: Mahasiswa!
+  createdAt: String!
+  updatedAt: String!
+}

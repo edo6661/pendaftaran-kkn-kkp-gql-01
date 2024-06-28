@@ -14,17 +14,20 @@ datasource db {
 }
 
 model Bau {
-  id String @default(uuid()) @id
+  id String @default(cuid()) @id
   name String
 }
+
 model User {
-  id String @default(uuid()) @id
+  id String @default(cuid()) @id
   username String 
   email String? 
   password String
   profilePhoto String @default("https://i.pinimg.com/564x/fc/68/c7/fc68c7853d0b5ecd72df224a7fe57071.jpg")
   role Role @default(MAHASISWA)
-
+  admin Admin? 
+  mahasiswa Mahasiswa?
+  dosen Dosen?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -35,4 +38,142 @@ enum Role {
   ADMIN
   MAHASISWA
   DOSEN
+}
+
+model Admin {
+  id String @default(cuid()) @id
+  user User @relation(fields: [userId], references: [id])
+  userId String @unique
+  fullname String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Mahasiswa {
+  id String @default(cuid()) @id
+  user User @relation(fields: [userId], references: [id])
+  userId String @unique
+  nim String @unique
+  fullname String
+  semester Int
+  prodiId String
+  konsentrasiId String
+  proyekId String? @unique
+  laporans Laporan[]
+  biayaOperasionals BiayaOperasional[]
+  persyaratan Persyaratan?
+  pendaftaran Pendaftaran?
+  prodi ProgramStudi @relation(fields: [prodiId], references: [id])
+  konsentrasi Konsentrasi @relation(fields: [konsentrasiId], references: [id])
+  proyek Proyek? @relation(fields: [proyekId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+}
+
+model ProgramStudi {
+  id String @default(cuid()) @id
+  name String
+  fakultas Fakultas @relation(fields: [fakultasId], references: [id])
+  fakultasId String
+  konsentrasi Konsentrasi[]
+  mahasiswa Mahasiswa[] 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+}
+
+model Fakultas {
+  id String @default(cuid()) @id
+  name String
+  programStudi ProgramStudi[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+}
+
+model Konsentrasi {
+  id String @default(cuid()) @id
+  name String
+  programStudi ProgramStudi @relation(fields: [programStudiId], references: [id])
+  programStudiId String
+  mahasiswa Mahasiswa[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+}
+
+model Dosen {
+  id String @default(cuid()) @id
+  user User @relation(fields: [userId], references: [id])
+  userId String @unique
+  fullname String
+  nidn String @unique
+  proyekId String @unique
+  proyek Proyek @relation(fields: [proyekId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+}
+
+model Proyek {
+  id String @default(cuid()) @id
+  name String
+  photo String
+  pembimbing Dosen?
+  description String
+  mahasiswa Mahasiswa?
+  laporan Laporan[]
+  biayaOperasional BiayaOperasional[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Laporan {
+  id String @default(cuid()) @id
+  photo String
+  file String
+  proyekId String
+  proyek Proyek @relation(fields: [proyekId], references: [id])
+  mahasiswaId String @unique
+  mahasiswa Mahasiswa @relation(fields: [mahasiswaId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+}
+
+model Persyaratan {
+  id String @default(cuid()) @id
+  keteranganSehat Boolean @default(false)
+  keteranganPembayaran Boolean @default(false)
+  keteranganOrangTua Boolean @default(false)
+  keteranganKelakuanBaik Boolean @default(false)
+  mahasiswaId String @unique
+  mahasiswa Mahasiswa @relation(fields: [mahasiswaId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Pendaftaran {
+  id String @default(cuid()) @id
+  mahasiswaId String @unique
+  mahasiswa Mahasiswa @relation(fields: [mahasiswaId], references: [id])
+  tanggalPendaftaran DateTime @default(now())
+  buktiPembayaran String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model BiayaOperasional {
+  id String @default(cuid()) @id
+  proyekId String
+  proyek Proyek @relation(fields: [proyekId], references: [id])
+  biayaTransportasi Int
+  biayaProyek Int
+  biayaDll Int
+  tanggalBiaya DateTime @default(now())
+  mahasiswaId String
+  mahasiswa Mahasiswa @relation(fields: [mahasiswaId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
