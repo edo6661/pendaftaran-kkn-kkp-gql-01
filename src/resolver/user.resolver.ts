@@ -7,7 +7,9 @@ import { SignInInput, SignUpInput } from "@/types/user";
 export const userResolver = {
   Query: {
     users: async () => {
-      return await db.user.findMany();
+      return await db.user.findMany({
+        include: userIncludeConfig,
+      });
     },
     user: async (_parent: any, { id }: { id: string }) => {
       try {

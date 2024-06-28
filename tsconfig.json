@@ -26,6 +26,6 @@
     "baseUrl": ".",
     "allowImportingTsExtensions": true
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "prisma/migrations"],
   "exclude": ["node_modules", "src/__tests__"]
 }

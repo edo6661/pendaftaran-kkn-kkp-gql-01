@@ -5,17 +5,17 @@ async function main() {
   // Data Dosen dengan ID User yang sudah ada
   const dosenData = [
     {
-      userId: "clxyl9tww000213egt7vg9j1a",
+      userId: "clxym0t6n0000cn33nnnhfwrz",
       fullname: "Dosen Satu",
       nidn: "1234567890",
     },
     {
-      userId: "clxyl9trh000013egvhom6hwk",
+      userId: "clxym0tcm0001cn33g1lw8za9",
       fullname: "Dosen Dua",
       nidn: "0987654321",
     },
     {
-      userId: "clxyl9twk000113eg8ko8l306",
+      userId: "clxym0tcv0002cn33zbtpjqhn",
       fullname: "Dosen Tiga",
       nidn: "1357924680",
     },
