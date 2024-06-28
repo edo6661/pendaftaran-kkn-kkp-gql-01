@@ -68,7 +68,6 @@ model Mahasiswa {
   proyek Proyek? @relation(fields: [proyekId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
 }
 
 model ProgramStudi {
@@ -80,7 +79,6 @@ model ProgramStudi {
   mahasiswa Mahasiswa[] 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
 }
 
 model Fakultas {
@@ -100,7 +98,6 @@ model Konsentrasi {
   mahasiswa Mahasiswa[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
 }
 
 model Dosen {
@@ -109,25 +106,28 @@ model Dosen {
   userId String @unique
   fullname String
   nidn String @unique
-  proyekId String @unique
-  proyek Proyek @relation(fields: [proyekId], references: [id])
+  proyekId String? @unique
+  proyek Proyek? @relation(fields: [proyekId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
 }
 
 model Proyek {
   id String @default(cuid()) @id
   name String
   photo String
-  pembimbing Dosen?
+  bolehDimulai Boolean @default(false)
+  telahSelesai Boolean @default(false)
   description String
-  mahasiswa Mahasiswa?
+  batasOrang Int
+  pembimbing Dosen?
+  mahasiswa Mahasiswa[]
   laporan Laporan[]
   biayaOperasional BiayaOperasional[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
 
 model Laporan {
   id String @default(cuid()) @id

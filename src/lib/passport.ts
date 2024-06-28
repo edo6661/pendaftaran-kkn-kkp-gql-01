@@ -3,7 +3,7 @@ import passport from "passport";
 import { db } from "./db";
 import { GraphQLLocalStrategy } from "graphql-passport";
 import { comparePassword } from "./hash";
-import { userIncludeConfig } from "@/config/user.config";
+import { userIncludeConfig } from "@/config/user";
 
 // ! CONSOLE.LOGS & THROW ERRORS ARE USED FOR DEBUGGING PURPOSES
 

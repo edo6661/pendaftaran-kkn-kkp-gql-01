@@ -8,8 +8,8 @@ import { CreateMahasiswaArgs, UpdateMahasiswaArgs } from "@/types/mahasiswa";
 export const mahasiswaResolver = {
   Query: {
     mahasiswas: async (_parent: any, _args: any, _context: IContext) => {
-      if (!_context.req.user)
-        throw new Error("Unauthorized: failed to get mahasiswas");
+      // if (!_context.req.user)
+      //   throw new Error("Unauthorized: failed to get mahasiswas");
       return await db.mahasiswa.findMany({ include: includeMahasiswa });
     },
     mahasiswa: async (_parent: any, { id }: { id: string }) => {

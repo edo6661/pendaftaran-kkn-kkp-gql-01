@@ -1,4 +1,4 @@
-import { userIncludeConfig } from "@/config/user.config";
+import { userIncludeConfig } from "@/config/user";
 import { db } from "@/lib/db";
 import { comparePassword, hashPassword } from "@/lib/hash";
 import { IContext } from "@/types/express";
