@@ -8,6 +8,8 @@ export const proyekTypedef = `#graphql
     mahasiswa: Mahasiswa
     laporan: [Laporan!]!
     biayaOperasional: [BiayaOperasional!]!
+    bolehDimulai: Boolean!
+    telahSelesai: Boolean!
     createdAt: String!
     updatedAt: String!
   }
@@ -22,13 +24,15 @@ export const proyekTypedef = `#graphql
       name: String!,
       photo: String,
       description: String
+      batasOrang: Int!
     ): Proyek
 
     updateProyek(
       id: ID!,
       name: String,
       photo: String,
-      description: String
+      description: String,
+      batasOrang: Int
     ): Proyek
 
     deleteProyek(id: ID!): Proyek

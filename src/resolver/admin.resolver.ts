@@ -32,6 +32,7 @@ export const adminResolver = {
           userId,
           fullname,
         },
+        include: { user: true },
       });
     },
     updateAdmin: async (

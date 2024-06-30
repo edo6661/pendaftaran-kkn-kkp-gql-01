@@ -6,7 +6,13 @@ import { IContext } from "@/types/express";
 export const programStudiResolver = {
   Query: {
     programStudis: async () => {
-      return await db.programStudi.findMany();
+      return await db.programStudi.findMany({
+        include: {
+          fakultas: true,
+          konsentrasi: true,
+          mahasiswa: true,
+        },
+      });
     },
     programStudi: async (_parent: any, { id }: { id: string }) => {
       return await db.programStudi.findUnique({

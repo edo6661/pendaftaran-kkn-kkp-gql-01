@@ -5,7 +5,14 @@ import { db } from "@/lib/db";
 export const proyekResolver = {
   Query: {
     proyeks: async () => {
-      return await db.proyek.findMany();
+      return await db.proyek.findMany({
+        include: {
+          pembimbing: true,
+          mahasiswa: true,
+          laporan: true,
+          biayaOperasional: true,
+        },
+      });
     },
     getProyek: async (_parent: any, { id }: { id: string }) => {
       return await db.proyek.findUnique({
@@ -26,10 +33,12 @@ export const proyekResolver = {
         name,
         photo,
         description,
+        batasOrang,
       }: {
         name: string;
         photo: string;
         description: string;
+        batasOrang: number;
       }
     ) => {
       return await db.proyek.create({
@@ -37,6 +46,7 @@ export const proyekResolver = {
           name,
           photo,
           description,
+          batasOrang,
         },
         include: {
           pembimbing: true,
@@ -53,11 +63,13 @@ export const proyekResolver = {
         name,
         photo,
         description,
+        batasOrang,
       }: {
         id: string;
         name?: string;
         photo?: string;
         description?: string;
+        batasOrang?: number;
       }
     ) => {
       return await db.proyek.update({
@@ -66,6 +78,7 @@ export const proyekResolver = {
           name,
           photo,
           description,
+          batasOrang,
         },
         include: {
           pembimbing: true,

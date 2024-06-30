@@ -65,7 +65,7 @@ export const userResolver = {
       _parent: any,
       { signUpInput }: { signUpInput: SignUpInput }
     ) => {
-      const { username, email, password } = signUpInput;
+      const { username, email, password, role } = signUpInput;
       const existingUser = await db.user.findFirst({
         where: { username },
       });
@@ -78,7 +78,7 @@ export const userResolver = {
           username,
           email,
           password: hashedPassword,
-          role: "MAHASISWA",
+          role,
         },
       });
     },

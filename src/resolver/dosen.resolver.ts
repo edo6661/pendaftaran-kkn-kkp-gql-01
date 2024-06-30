@@ -23,7 +23,6 @@ export const dosenResolver = {
         fullname,
         nidn,
         userId,
-        proyekId,
       }: { fullname: string; nidn: string; userId: string; proyekId: string }
     ) => {
       return await db.dosen.create({
@@ -31,7 +30,6 @@ export const dosenResolver = {
           fullname,
           nidn,
           userId,
-          proyekId,
         },
         include: { user: true },
       });
