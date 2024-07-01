@@ -6,7 +6,10 @@ export const generateToken = (user: UserWithoutPassword) =>
     {
       ...user,
     },
-    process.env.JWT_TOKEN_SECRET!
+    process.env.JWT_TOKEN_SECRET!,
+    {
+      expiresIn: "7d",
+    }
   );
 export const verifyToken = (token: string) =>
   jwt.verify(token, process.env.JWT_TOKEN_SECRET!);

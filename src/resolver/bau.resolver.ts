@@ -4,7 +4,7 @@ import { IContext } from "@/types/express";
 export const bauResolver = {
   Query: {
     baus: async (_parent: any, _args: any, _context: IContext) => {
-      if (!_context.req.user) throw new Error("Unauthorized failed to get bau");
+      // if (!_context.req.user) throw new Error("Unauthorized failed to get bau");
       return await db.bau.findMany();
     },
     bau: async (_parent: any, { id }: { id: string }) => {
@@ -14,13 +14,7 @@ export const bauResolver = {
     },
   },
   Mutation: {
-    createBau: async (
-      _parent: any,
-      { name }: { name: string },
-      context: IContext
-    ) => {
-      if (!context.req.user)
-        throw new Error("Unauthorized failed to create bau");
+    createBau: async (_parent: any, { name }: { name: string }) => {
       return await db.bau.create({
         data: {
           name,

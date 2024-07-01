@@ -23,13 +23,19 @@ export const dosenResolver = {
         fullname,
         nidn,
         userId,
-      }: { fullname: string; nidn: string; userId: string; proyekId: string }
+        proyekId,
+      }: { fullname: string; nidn: string; userId: string; proyekId?: string }
     ) => {
+      // TODO: Remove this line
+      if (!fullname || !nidn || !userId)
+        throw new Error("Please provide fullname, nidn, and userId");
+
       return await db.dosen.create({
         data: {
           fullname,
           nidn,
           userId,
+          ...(proyekId && { proyekId }),
         },
         include: { user: true },
       });

@@ -6,8 +6,6 @@ import { IContext } from "@/types/express";
 export const adminResolver = {
   Query: {
     admins: async (_parent: any, _args: any, _context: IContext) => {
-      if (!_context.req.user)
-        throw new Error("Unauthorized: failed to get admins");
       return await db.admin.findMany({
         include: { user: true },
       });
@@ -22,11 +20,8 @@ export const adminResolver = {
   Mutation: {
     createAdmin: async (
       _parent: any,
-      { userId, fullname }: { userId: string; fullname: string },
-      context: IContext
+      { userId, fullname }: { userId: string; fullname: string }
     ) => {
-      if (!context.req.user)
-        throw new Error("Unauthorized: failed to create admin");
       return await db.admin.create({
         data: {
           userId,

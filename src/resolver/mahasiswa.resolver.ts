@@ -8,8 +8,6 @@ import { CreateMahasiswaArgs, UpdateMahasiswaArgs } from "@/types/mahasiswa";
 export const mahasiswaResolver = {
   Query: {
     mahasiswas: async (_parent: any, _args: any, _context: IContext) => {
-      // if (!_context.req.user)
-      //   throw new Error("Unauthorized: failed to get mahasiswas");
       return await db.mahasiswa.findMany({ include: includeMahasiswa });
     },
     mahasiswa: async (_parent: any, { id }: { id: string }) => {
@@ -20,13 +18,9 @@ export const mahasiswaResolver = {
     },
   },
   Mutation: {
-    createMahasiswa: async (
-      _parent: any,
-      args: CreateMahasiswaArgs,
-      context: IContext
-    ) => {
-      if (!context.req.user)
-        throw new Error("Unauthorized: failed to create mahasiswa");
+    createMahasiswa: async (_parent: any, args: CreateMahasiswaArgs) => {
+      // if (!context.req.user)
+      // throw new Error("Unauthorized: failed to create mahasiswa");
       return await db.mahasiswa.create({
         data: { ...args },
       });
