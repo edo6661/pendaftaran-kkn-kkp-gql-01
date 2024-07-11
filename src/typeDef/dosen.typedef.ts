@@ -4,6 +4,7 @@ export const dosenTypedef = `#graphql
     fullname: String!
     nidn: String!
     proyek: Proyek
+    userId: ID!
     user: User!
     createdAt: String!
     updatedAt: String!
@@ -19,6 +20,7 @@ export const dosenTypedef = `#graphql
       fullname: String!,
       nidn: String!,
       userId: ID!,
+      # proyekId: ID
     ): Dosen
 
     updateDosen(

@@ -34,16 +34,19 @@ export const dosenResolver = {
       // TODO: Remove this line
       if (!fullname || !nidn || !userId)
         throw new Error("Please provide fullname, nidn, and userId");
-
-      return await db.dosen.create({
-        data: {
-          fullname,
-          nidn,
-          userId,
-          // ...(proyekId && { proyekId }),
-        },
-        include: { user: true },
-      });
+      try {
+        return await db.dosen.create({
+          data: {
+            fullname,
+            nidn,
+            userId,
+            // ...(proyekId && { proyekId }),
+          },
+          include: { user: true },
+        });
+      } catch (err) {
+        console.error(err);
+      }
     },
     updateDosen: async (
       _parent: any,

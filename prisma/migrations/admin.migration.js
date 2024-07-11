@@ -5,15 +5,15 @@ async function main() {
   // Data Admin dengan ID User yang sudah ada
   const adminData = [
     {
-      userId: "clxym0rce00028l3e1viwbit0",
+      userId: "cly75855k000288m0ywk1uz0q",
       fullname: "Admin Satu",
     },
     {
-      userId: "clxym0r6c00008l3efgwaorz9",
+      userId: "cly7584tt000088m08a6i6a2g",
       fullname: "Admin Dua",
     },
     {
-      userId: "clxym0rbv00018l3ekaxx3am8",
+      userId: "cly7584yw000188m03etonsxw",
       fullname: "Admin Tiga",
     },
     // Tambahkan admin lainnya sesuai kebutuhan
