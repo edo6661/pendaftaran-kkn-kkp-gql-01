@@ -22,7 +22,14 @@ export const mahasiswaResolver = {
       // if (!context.req.user)
       // throw new Error("Unauthorized: failed to create mahasiswa");
       return await db.mahasiswa.create({
-        data: { ...args },
+        data: {
+          fullname: args.fullname,
+          nim: args.nim,
+          semester: args.semester,
+          prodi: { connect: { id: args.prodiId } },
+          konsentrasi: { connect: { id: args.konsentrasiId } },
+          user: { connect: { id: args.userId } },
+        },
       });
     },
     updateMahasiswa: async (_parent: any, args: UpdateMahasiswaArgs) => {
