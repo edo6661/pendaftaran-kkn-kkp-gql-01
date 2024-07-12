@@ -21,16 +21,52 @@ export const mahasiswaResolver = {
     createMahasiswa: async (_parent: any, args: CreateMahasiswaArgs) => {
       // if (!context.req.user)
       // throw new Error("Unauthorized: failed to create mahasiswa");
-      return await db.mahasiswa.create({
-        data: {
-          fullname: args.fullname,
-          nim: args.nim,
-          semester: args.semester,
-          prodi: { connect: { id: args.prodiId } },
-          konsentrasi: { connect: { id: args.konsentrasiId } },
-          user: { connect: { id: args.userId } },
-        },
-      });
+      try {
+        // Pastikan userId yang diterima benar-benar ada
+        const existingUser = await db.user.findUnique({
+          where: { id: args.userId },
+        });
+
+        if (!existingUser) {
+          throw new Error("User not found");
+        }
+
+        // Pastikan prodiId yang diterima benar-benar ada
+        const existingProdi = await db.programStudi.findUnique({
+          where: { id: args.prodiId },
+        });
+
+        if (!existingProdi) {
+          throw new Error("Program Studi not found");
+        }
+
+        // Pastikan konsentrasiId yang diterima benar-benar ada
+        const existingKonsentrasi = await db.konsentrasi.findUnique({
+          where: { id: args.konsentrasiId },
+        });
+
+        if (!existingKonsentrasi) {
+          throw new Error("Konsentrasi not found");
+        }
+
+        // Sekarang kita bisa membuat mahasiswa baru
+        const newMahasiswa = await db.mahasiswa.create({
+          data: {
+            userId: args.userId,
+            nim: args.nim,
+            fullname: args.fullname,
+            semester: args.semester,
+            prodiId: args.prodiId,
+            konsentrasiId: args.konsentrasiId,
+            proyekId: args.proyekId,
+          },
+        });
+
+        return newMahasiswa;
+      } catch (err) {
+        console.error("Error occurred:", err);
+        throw new Error("Failed to create Mahasiswa");
+      }
     },
     updateMahasiswa: async (_parent: any, args: UpdateMahasiswaArgs) => {
       const { id, ...data } = args;
