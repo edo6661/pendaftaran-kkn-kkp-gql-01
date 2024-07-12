@@ -22,50 +22,13 @@ export const mahasiswaResolver = {
       // if (!context.req.user)
       // throw new Error("Unauthorized: failed to create mahasiswa");
       try {
-        // Pastikan userId yang diterima benar-benar ada
-        const existingUser = await db.user.findUnique({
-          where: { id: args.userId },
-        });
-
-        if (!existingUser) {
-          throw new Error("User not found");
-        }
-
-        // Pastikan prodiId yang diterima benar-benar ada
-        const existingProdi = await db.programStudi.findUnique({
-          where: { id: args.prodiId },
-        });
-
-        if (!existingProdi) {
-          throw new Error("Program Studi not found");
-        }
-
-        // Pastikan konsentrasiId yang diterima benar-benar ada
-        const existingKonsentrasi = await db.konsentrasi.findUnique({
-          where: { id: args.konsentrasiId },
-        });
-
-        if (!existingKonsentrasi) {
-          throw new Error("Konsentrasi not found");
-        }
-
-        // Sekarang kita bisa membuat mahasiswa baru
-        const newMahasiswa = await db.mahasiswa.create({
+        return await db.mahasiswa.create({
           data: {
-            userId: args.userId,
-            nim: args.nim,
-            fullname: args.fullname,
-            semester: args.semester,
-            prodiId: args.prodiId,
-            konsentrasiId: args.konsentrasiId,
-            proyekId: args.proyekId,
+            ...args,
           },
         });
-
-        return newMahasiswa;
       } catch (err) {
         console.error("Error occurred:", err);
-        throw new Error("Failed to create Mahasiswa");
       }
     },
     updateMahasiswa: async (_parent: any, args: UpdateMahasiswaArgs) => {
