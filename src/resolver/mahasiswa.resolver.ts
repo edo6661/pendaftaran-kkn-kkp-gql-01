@@ -69,6 +69,7 @@ export const mahasiswaResolver = {
             konsentrasiId: args.konsentrasiId,
             proyekId: args.proyekId || null,
           },
+          include: includeMahasiswa,
         });
 
         console.log("Mahasiswa created successfully:", newMahasiswa);
