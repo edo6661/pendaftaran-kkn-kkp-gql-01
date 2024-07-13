@@ -58,7 +58,7 @@ model Mahasiswa {
   semester Int
   prodiId String
   konsentrasiId String
-  proyekId String? @unique
+  proyekId String? 
   laporans Laporan[]
   biayaOperasionals BiayaOperasional[]
   persyaratan Persyaratan?

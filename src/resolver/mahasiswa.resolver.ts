@@ -81,11 +81,38 @@ export const mahasiswaResolver = {
     },
     updateMahasiswa: async (_parent: any, args: UpdateMahasiswaArgs) => {
       const { id, ...data } = args;
-      return await db.mahasiswa.update({
-        where: { id },
-        data,
-        include: includeMahasiswa,
-      });
+      try {
+        const existingProdi = await db.programStudi.findUnique({
+          where: { id: args.prodiId },
+        });
+        if (!existingProdi) {
+          throw new Error("Program Studi not found");
+        }
+
+        const existingKonsentrasi = await db.konsentrasi.findUnique({
+          where: { id: args.konsentrasiId },
+        });
+        if (!existingKonsentrasi) {
+          throw new Error("Konsentrasi not found");
+        }
+
+        if (args.proyekId) {
+          const existingProyek = await db.proyek.findUnique({
+            where: { id: args.proyekId },
+          });
+          if (!existingProyek) {
+            throw new Error("Proyek not found");
+          }
+        }
+        return await db.mahasiswa.update({
+          where: { id },
+          data,
+          include: includeMahasiswa,
+        });
+      } catch (err) {
+        console.error("Error occurred during updateMahasiswa:", err);
+        throw err;
+      }
     },
     deleteMahasiswa: async (_parent: any, { id }: { id: string }) => {
       return await db.mahasiswa.delete({
