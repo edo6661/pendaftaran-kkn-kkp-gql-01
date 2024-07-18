@@ -23,12 +23,12 @@ export const dosenResolver = {
         fullname,
         nidn,
         userId,
-      }: // proyekId,
-      {
+        proyekId,
+      }: {
         fullname: string;
         nidn: string;
         userId: string;
-        // proyekId?: string
+        proyekId?: string;
       }
     ) => {
       // TODO: Remove this line
@@ -40,7 +40,7 @@ export const dosenResolver = {
             fullname,
             nidn,
             userId,
-            // ...(proyekId && { proyekId }),
+            ...(proyekId && { proyekId }),
           },
           include: { user: true },
         });
