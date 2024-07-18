@@ -32,8 +32,6 @@ export const dosenResolver = {
       }
     ) => {
       // TODO: Remove this line
-      if (!fullname || !nidn || !userId)
-        throw new Error("Please provide fullname, nidn, and userId");
       try {
         return await db.dosen.create({
           data: {
