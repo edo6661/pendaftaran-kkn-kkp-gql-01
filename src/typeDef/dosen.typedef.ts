@@ -21,7 +21,7 @@ export const dosenTypedef = `#graphql
       fullname: String!,
       nidn: String!,
       userId: ID!,
-      # proyekId: ID
+      proyekId: ID
     ): Dosen
 
     updateDosen(
