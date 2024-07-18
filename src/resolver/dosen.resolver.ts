@@ -70,7 +70,7 @@ export const dosenResolver = {
           fullname,
           nidn,
           userId,
-          proyekId,
+          ...(proyekId && { proyekId }),
         },
         include: { user: true },
       });
