@@ -3,6 +3,7 @@ export const dosenTypedef = `#graphql
     id: ID!
     fullname: String!
     nidn: String!
+    proyekId: ID
     proyek: Proyek
     userId: ID!
     user: User!
