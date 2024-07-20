@@ -3,6 +3,7 @@ export const konsentrasiTypedef = `#graphql
     id: ID!
     name: String!
     programStudi: ProgramStudi!
+    programStudiId: ID
     mahasiswa: [Mahasiswa!]!
     createdAt: String!
     updatedAt: String!
