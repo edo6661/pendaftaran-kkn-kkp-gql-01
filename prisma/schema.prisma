@@ -93,8 +93,8 @@ model Fakultas {
 model Konsentrasi {
   id String @default(cuid()) @id
   name String
-  programStudi ProgramStudi @relation(fields: [programStudiId], references: [id])
-  programStudiId String
+  programStudi ProgramStudi? @relation(fields: [programStudiId], references: [id])
+  programStudiId String?
   mahasiswa Mahasiswa[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
