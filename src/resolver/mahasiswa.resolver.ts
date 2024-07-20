@@ -1,5 +1,3 @@
-// resolvers/mahasiswa.ts
-
 import { includeMahasiswa } from "@/config/mahasiswa.config";
 import { db } from "@/lib/db";
 import { IContext } from "@/types/express";
@@ -19,12 +17,13 @@ export const mahasiswaResolver = {
   },
   Mutation: {
     createMahasiswa: async (_parent: any, args: CreateMahasiswaArgs) => {
-      // if (!context.req.user)
-      // throw new Error("Unauthorized: failed to create mahasiswa");
       try {
-        console.log("Starting createMahasiswa with args:", args);
-
-        // Validasi keberadaan user
+        const nimExist = await db.mahasiswa.findFirst({
+          where: { nim: args.nim },
+        });
+        if (nimExist) {
+          throw new Error("NIM already exists");
+        }
         const existingUser = await db.user.findUnique({
           where: { id: args.userId },
         });
@@ -32,7 +31,6 @@ export const mahasiswaResolver = {
           throw new Error("User not found");
         }
 
-        // Validasi keberadaan program studi
         const existingProdi = await db.programStudi.findUnique({
           where: { id: args.prodiId },
         });
@@ -40,7 +38,6 @@ export const mahasiswaResolver = {
           throw new Error("Program Studi not found");
         }
 
-        // Validasi keberadaan konsentrasi
         const existingKonsentrasi = await db.konsentrasi.findUnique({
           where: { id: args.konsentrasiId },
         });
@@ -48,7 +45,6 @@ export const mahasiswaResolver = {
           throw new Error("Konsentrasi not found");
         }
 
-        // Validasi keberadaan proyek jika proyekId diberikan
         if (args.proyekId) {
           const existingProyek = await db.proyek.findUnique({
             where: { id: args.proyekId },
@@ -58,7 +54,6 @@ export const mahasiswaResolver = {
           }
         }
 
-        // Membuat mahasiswa baru
         const newMahasiswa = await db.mahasiswa.create({
           data: {
             userId: args.userId,

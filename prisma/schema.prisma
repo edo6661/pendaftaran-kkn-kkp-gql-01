@@ -106,7 +106,7 @@ model Dosen {
   userId String @unique
   fullname String
   nidn String @unique
-  proyekId String? @unique
+  proyekId String? 
   proyek Proyek? @relation(fields: [proyekId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -120,7 +120,7 @@ model Proyek {
   telahSelesai Boolean @default(false)
   description String
   batasOrang Int
-  pembimbing Dosen?
+  pembimbing Dosen[]
   mahasiswa Mahasiswa[]
   laporan Laporan[]
   biayaOperasional BiayaOperasional[]

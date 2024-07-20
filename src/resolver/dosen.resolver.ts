@@ -31,8 +31,16 @@ export const dosenResolver = {
         proyekId?: string;
       }
     ) => {
-      // TODO: Remove this line
+      // TODO: buat validasi, jika proyekId nya sudah ada di dosen lain, maka tidak bisa diinput
       try {
+        const dosenExist = await db.dosen.findFirst({
+          where: {
+            nidn: nidn,
+          },
+        });
+        if (dosenExist) {
+          throw new Error("NIDN already exists");
+        }
         return await db.dosen.create({
           data: {
             fullname,
