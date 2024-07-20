@@ -16,11 +16,13 @@ export const konsentrasiTypedef = `#graphql
   type Mutation {
     createKonsentrasi(
       name: String!,
+      programStudiId: ID
     ): Konsentrasi
 
     updateKonsentrasi(
       id: ID!,
       name: String,
+      programStudiId: ID
     ): Konsentrasi
 
     deleteKonsentrasi(id: ID!): Konsentrasi

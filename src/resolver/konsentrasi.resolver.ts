@@ -14,22 +14,28 @@ export const konsentrasiResolver = {
   Mutation: {
     createKonsentrasi: async (
       _parent: any,
-      { name }: { name: string; programStudiId: string }
+      { name, programStudiId }: { name: string; programStudiId?: string }
     ) => {
       return await db.konsentrasi.create({
         data: {
           name,
+          ...(programStudiId && { programStudiId }),
         },
       });
     },
     updateKonsentrasi: async (
       _parent: any,
-      { id, name }: { id: string; name?: string; programStudiId?: string }
+      {
+        id,
+        name,
+        programStudiId,
+      }: { id: string; name?: string; programStudiId?: string }
     ) => {
       return await db.konsentrasi.update({
         where: { id },
         data: {
           name,
+          ...(programStudiId && { programStudiId }),
         },
       });
     },
