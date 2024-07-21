@@ -10,7 +10,7 @@ export const mahasiswaTypedef = `#graphql
     nim: String!
     fullname: String!
     semester: Int!
-    role: String!
+    role: RoleMahasiswa!
     
     kelompok: Kelompok
     kelas: Kelas
@@ -25,7 +25,10 @@ export const mahasiswaTypedef = `#graphql
     createdAt: String!
     updatedAt: String!
   }
-  
+  enum RoleMahasiswa {
+    KETUA
+    ANGGOTA
+  }
 
   type Query {
     mahasiswas: [Mahasiswa!]!
