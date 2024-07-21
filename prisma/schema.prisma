@@ -108,6 +108,7 @@ model Dosen {
   nidn String @unique
   proyekId String? 
   proyek Proyek? @relation(fields: [proyekId], references: [id])
+  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
