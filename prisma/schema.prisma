@@ -59,6 +59,9 @@ model Mahasiswa {
   role RoleMahasiswa @default(ANGGOTA)
   prodiId String
   konsentrasiId String
+  kelasId String?
+  angkatanId String?
+  kelompokId String?
   proyekId String? 
   laporans Laporan[]
   biayaOperasionals BiayaOperasional[]
@@ -67,11 +70,8 @@ model Mahasiswa {
   prodi ProgramStudi @relation(fields: [prodiId], references: [id])
   konsentrasi Konsentrasi @relation(fields: [konsentrasiId], references: [id])
   proyek Proyek? @relation(fields: [proyekId], references: [id])
-  kelasId String?
   kelas Kelas? @relation(fields: [kelasId], references: [id])
-  angkatanId String?
   angkatan Angkatan? @relation(fields: [angkatanId], references: [id])
-  kelompokId String?
   kelompok Kelompok? @relation(fields: [kelompokId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -89,6 +89,7 @@ model Kelas {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
 model Angkatan {
   id String @default(cuid()) @id
   tahun Int
@@ -158,6 +159,7 @@ model Proyek {
   verified Boolean @default(false)
   description String
   lokasi String?
+  type TypeProyek @default(KKN)
   tanggalMulai DateTime?
   tanggalSelesai DateTime?
   batasOrang Int
@@ -168,6 +170,11 @@ model Proyek {
   biayaOperasional BiayaOperasional[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+enum TypeProyek {
+  KKN
+  KKP
 }
 
 

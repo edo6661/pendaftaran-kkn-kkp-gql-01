@@ -6,6 +6,9 @@ export interface CreateMahasiswaArgs {
   prodiId: string;
   konsentrasiId: string;
   proyekId?: string;
+  kelasId?: string;
+  angkatanId?: string;
+  kelompokId?: string;
 }
 
 export interface UpdateMahasiswaArgs {
@@ -16,4 +19,7 @@ export interface UpdateMahasiswaArgs {
   prodiId?: string;
   konsentrasiId?: string;
   proyekId?: string;
+  kelasId?: string;
+  angkatanId?: string;
+  kelompokId?: string;
 }

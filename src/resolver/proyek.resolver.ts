@@ -36,11 +36,23 @@ export const proyekResolver = {
         photo,
         description,
         batasOrang,
+        verified,
+        bolehDimulai,
+        lokasi,
+        tanggalMulai,
+        tanggalSelesai,
+        telahSelesai,
       }: {
         name: string;
         photo: string;
         description: string;
         batasOrang: number;
+        verified?: boolean;
+        lokasi?: string;
+        tanggalMulai?: string;
+        tanggalSelesai?: string;
+        bolehDimulai?: boolean;
+        telahSelesai?: boolean;
       }
     ) => {
       return await db.proyek.create({
@@ -49,6 +61,12 @@ export const proyekResolver = {
           photo,
           description,
           batasOrang,
+          ...(verified && { verified }),
+          ...(bolehDimulai && { bolehDimulai }),
+          ...(lokasi && { lokasi }),
+          ...(tanggalMulai && { tanggalMulai }),
+          ...(tanggalSelesai && { tanggalSelesai }),
+          ...(telahSelesai && { telahSelesai }),
         },
         include: {
           pembimbing: true,
@@ -66,12 +84,24 @@ export const proyekResolver = {
         photo,
         description,
         batasOrang,
+        verified,
+        bolehDimulai,
+        lokasi,
+        tanggalMulai,
+        tanggalSelesai,
+        telahSelesai,
       }: {
         id: string;
         name?: string;
         photo?: string;
         description?: string;
         batasOrang?: number;
+        verified?: boolean;
+        lokasi?: string;
+        tanggalMulai?: string;
+        tanggalSelesai?: string;
+        bolehDimulai?: boolean;
+        telahSelesai?: boolean;
       }
     ) => {
       return await db.proyek.update({
@@ -81,6 +111,12 @@ export const proyekResolver = {
           photo,
           description,
           batasOrang,
+          ...(verified && { verified }),
+          ...(bolehDimulai && { bolehDimulai }),
+          ...(lokasi && { lokasi }),
+          ...(tanggalMulai && { tanggalMulai }),
+          ...(tanggalSelesai && { tanggalSelesai }),
+          ...(telahSelesai && { telahSelesai }),
         },
         include: {
           pembimbing: true,

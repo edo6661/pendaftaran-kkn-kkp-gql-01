@@ -67,8 +67,6 @@ export const mahasiswaResolver = {
           include: includeMahasiswa,
         });
 
-        console.log("Mahasiswa created successfully:", newMahasiswa);
-
         return newMahasiswa;
       } catch (err) {
         console.error("Error occurred during createMahasiswa:", err);

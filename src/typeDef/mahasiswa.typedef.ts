@@ -3,9 +3,18 @@ export const mahasiswaTypedef = `#graphql
     id: ID!
     user: User!
     userId: ID!
+    kelasId: ID
+    angkatanId: ID
+    proyekId: ID
+    kelompokId: ID
     nim: String!
     fullname: String!
     semester: Int!
+    role: String!
+    
+    kelompok: Kelompok
+    kelas: Kelas
+    angkatan: Angkatan
     prodi: ProgramStudi!
     konsentrasi: Konsentrasi!
     proyek: Proyek
@@ -29,7 +38,11 @@ export const mahasiswaTypedef = `#graphql
       semester: Int!,
       prodiId: ID!,
       konsentrasiId: ID!,
-      proyekId: ID
+      proyekId: ID,
+      kelasId: ID,
+      angkatanId: ID,
+      kelompokId: ID,
+      role: String!
     ): Mahasiswa
 
     updateMahasiswa(
@@ -39,7 +52,11 @@ export const mahasiswaTypedef = `#graphql
       semester: Int,
       prodiId: ID,
       konsentrasiId: ID,
-      proyekId: ID
+      proyekId: ID,
+      kelasId: ID,
+      angkatanId: ID,
+      kelompokId: ID,
+      role: String
     ): Mahasiswa
 
     deleteMahasiswa(id: ID!): Mahasiswa
