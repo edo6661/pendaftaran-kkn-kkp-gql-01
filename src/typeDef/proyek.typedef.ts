@@ -3,9 +3,9 @@ export const proyekTypedef = `#graphql
     id: ID!
     name: String!
     photo: String
-    pembimbing: [Dosen]
+    pembimbing: Dosen
     description: String
-    mahasiswa: [Mahasiswa]
+    mahasiswa: Mahasiswa
     laporan: [Laporan!]!
     biayaOperasional: [BiayaOperasional!]!
     bolehDimulai: Boolean!
