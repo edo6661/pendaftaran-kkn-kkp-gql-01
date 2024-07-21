@@ -63,6 +63,10 @@ export const mahasiswaResolver = {
             prodiId: args.prodiId,
             konsentrasiId: args.konsentrasiId,
             proyekId: args.proyekId || null,
+            kelasId: args.kelasId || null,
+            angkatanId: args.angkatanId || null,
+            kelompokId: args.kelompokId || null,
+            role: args.role,
           },
           include: includeMahasiswa,
         });

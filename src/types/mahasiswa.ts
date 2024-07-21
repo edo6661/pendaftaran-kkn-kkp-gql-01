@@ -1,3 +1,5 @@
+import { RoleMahasiswa } from "@prisma/client";
+
 export interface CreateMahasiswaArgs {
   userId: string;
   nim: string;
@@ -9,6 +11,7 @@ export interface CreateMahasiswaArgs {
   kelasId?: string;
   angkatanId?: string;
   kelompokId?: string;
+  role: RoleMahasiswa;
 }
 
 export interface UpdateMahasiswaArgs {
@@ -22,4 +25,5 @@ export interface UpdateMahasiswaArgs {
   kelasId?: string;
   angkatanId?: string;
   kelompokId?: string;
+  role?: RoleMahasiswa;
 }
