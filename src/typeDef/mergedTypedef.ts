@@ -12,6 +12,9 @@ import { laporanTypedef } from "./laporan.typedef";
 import { persyaratanTypedef } from "./persyaratan.typedef";
 import { pendaftaranTypedef } from "./pendaftaran.typedef";
 import { biayaOperasionalTypedef } from "./biayaOperasional.typedef";
+import { angkatanTypedef } from "./angkatan.typedef";
+import { kelompokTypedef } from "./kelompok.typedef";
+import { kelasTypedef } from "./kelas.typedef";
 
 export const mergedTypedef = mergeTypeDefs([
   userTypedef,
@@ -27,4 +30,7 @@ export const mergedTypedef = mergeTypeDefs([
   persyaratanTypedef,
   pendaftaranTypedef,
   biayaOperasionalTypedef,
+  angkatanTypedef,
+  kelompokTypedef,
+  kelasTypedef,
 ]);

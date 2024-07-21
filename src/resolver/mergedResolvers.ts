@@ -14,6 +14,7 @@ import { pendaftaranResolver } from "./pendaftaran.resolver";
 import { biayaOperasionalResolver } from "./biayaOperasional.resolver";
 import { angkatanResolver } from "./angkatan.resolver";
 import { kelompokResolver } from "./kelompok.resolver";
+import { kelasResolver } from "./kelas.resolver";
 
 export const mergedResolvers = mergeResolvers([
   userResolver,
@@ -31,4 +32,5 @@ export const mergedResolvers = mergeResolvers([
   biayaOperasionalResolver,
   angkatanResolver,
   kelompokResolver,
+  kelasResolver,
 ]);

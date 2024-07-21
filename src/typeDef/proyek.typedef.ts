@@ -20,6 +20,7 @@ export const proyekTypedef = `#graphql
     createdAt: String!
     updatedAt: String!
   }
+  
 
   type Query {
     proyeks: [Proyek!]!

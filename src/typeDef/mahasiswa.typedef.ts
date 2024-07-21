@@ -25,6 +25,7 @@ export const mahasiswaTypedef = `#graphql
     createdAt: String!
     updatedAt: String!
   }
+  
 
   type Query {
     mahasiswas: [Mahasiswa!]!
