@@ -6,8 +6,8 @@ export const proyekTypedef = `#graphql
     pembimbing: [Dosen]
     description: String
     mahasiswa: [Mahasiswa]
-    laporan: [Laporan!]!
-    biayaOperasional: [BiayaOperasional!]!
+    laporans: [Laporan!]!
+    biayaOperasionals: [BiayaOperasional!]!
     bolehDimulai: Boolean!
     telahSelesai: Boolean!
     createdAt: String!
