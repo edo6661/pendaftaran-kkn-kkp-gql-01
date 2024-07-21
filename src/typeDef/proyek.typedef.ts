@@ -5,14 +5,13 @@ export const proyekTypedef = `#graphql
     photo: String
     pembimbing: Dosen
     description: String
-    mahasiswa: [Mahasiswa]
+    mahasiswa: Mahasiswa
     laporan: [Laporan!]!
     biayaOperasional: [BiayaOperasional!]!
     bolehDimulai: Boolean!
     telahSelesai: Boolean!
     createdAt: String!
     updatedAt: String!
-    
   }
 
   type Query {
