@@ -62,6 +62,7 @@ model Mahasiswa {
   laporans Laporan[]
   biayaOperasionals BiayaOperasional[]
   persyaratan Persyaratan?
+  pendaftaran Pendaftaran?
   prodi ProgramStudi @relation(fields: [prodiId], references: [id])
   konsentrasi Konsentrasi @relation(fields: [konsentrasiId], references: [id])
   proyek Proyek? @relation(fields: [proyekId], references: [id])
@@ -153,6 +154,15 @@ model Persyaratan {
   updatedAt DateTime @updatedAt
 }
 
+model Pendaftaran {
+  id String @default(cuid()) @id
+  mahasiswaId String @unique
+  mahasiswa Mahasiswa @relation(fields: [mahasiswaId], references: [id])
+  tanggalPendaftaran DateTime @default(now())
+  buktiPembayaran String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
 
 model BiayaOperasional {
   id String @default(cuid()) @id
