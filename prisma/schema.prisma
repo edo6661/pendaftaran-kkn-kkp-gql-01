@@ -56,6 +56,7 @@ model Mahasiswa {
   nim String @unique
   fullname String
   semester Int
+  role RoleMahasiswa @default(ANGGOTA)
   prodiId String
   konsentrasiId String
   proyekId String? 
@@ -66,6 +67,42 @@ model Mahasiswa {
   prodi ProgramStudi @relation(fields: [prodiId], references: [id])
   konsentrasi Konsentrasi @relation(fields: [konsentrasiId], references: [id])
   proyek Proyek? @relation(fields: [proyekId], references: [id])
+  kelasId String?
+  kelas Kelas? @relation(fields: [kelasId], references: [id])
+  angkatanId String?
+  angkatan Angkatan? @relation(fields: [angkatanId], references: [id])
+  kelompokId String?
+  kelompok Kelompok? @relation(fields: [kelompokId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum RoleMahasiswa {
+  KETUA
+  ANGGOTA
+}
+
+model Kelas {
+  id String @default(cuid()) @id
+  name String
+  mahasiswa Mahasiswa[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+model Angkatan {
+  id String @default(cuid()) @id
+  tahun Int
+  mahasiswa Mahasiswa[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Kelompok {
+  id String @default(cuid()) @id
+  name String
+  mahasiswa Mahasiswa[]
+  proyekId String
+  proyek Proyek @relation(fields: [proyekId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -118,11 +155,16 @@ model Proyek {
   photo String
   bolehDimulai Boolean @default(false)
   telahSelesai Boolean @default(false)
+  verified Boolean @default(false)
   description String
+  lokasi String?
+  tanggalMulai DateTime?
+  tanggalSelesai DateTime?
   batasOrang Int
   pembimbing Dosen[]
   mahasiswa Mahasiswa[]
   laporan Laporan[]
+  kelompok Kelompok[]
   biayaOperasional BiayaOperasional[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
