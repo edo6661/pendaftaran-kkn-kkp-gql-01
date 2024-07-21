@@ -8,7 +8,7 @@ export const mahasiswaTypedef = `#graphql
     semester: Int!
     prodi: ProgramStudi!
     konsentrasi: Konsentrasi!
-    proyek: [Proyek]
+    proyek: Proyek
     laporans: [Laporan!]!
     biayaOperasionals: [BiayaOperasional!]!
     persyaratan: Persyaratan
