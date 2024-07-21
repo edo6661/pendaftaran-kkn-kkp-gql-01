@@ -35,13 +35,4 @@ export const adminTypedef = `#graphql
     MAHASISWA
     DOSEN
   }
-  type Dosen {
-    id: ID!
-    user: User!
-    fullname: String!
-    nidn: String!
-    proyek: Proyek!
-    createdAt: String!
-    updatedAt: String!
-  }
 `;

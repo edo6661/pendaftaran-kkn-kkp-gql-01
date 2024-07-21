@@ -46,21 +46,4 @@ export const programStudiTypedef = `#graphql
     createdAt: String!
     updatedAt: String!
   }
-  type Mahasiswa {
-    id: ID!
-    user: User!
-    userId: ID!
-    nim: String!
-    fullname: String!
-    semester: Int!
-    prodi: ProgramStudi!
-    konsentrasi: Konsentrasi!
-    proyek: Proyek
-    laporans: [Laporan!]!
-    biayaOperasionals: [BiayaOperasional!]!
-    persyaratan: Persyaratan
-    pendaftaran: Pendaftaran
-    createdAt: String!
-    updatedAt: String!
-  }
 `;

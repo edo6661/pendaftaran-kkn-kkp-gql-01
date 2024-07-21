@@ -5,7 +5,7 @@ import { db } from "@/lib/db";
 export const proyekResolver = {
   Query: {
     proyeks: async () => {
-      return await db.proyek.findMany({
+      const proyeks = await db.proyek.findMany({
         include: {
           pembimbing: true,
           mahasiswa: true,
@@ -13,6 +13,8 @@ export const proyekResolver = {
           biayaOperasional: true,
         },
       });
+
+      return proyeks;
     },
     getProyek: async (_parent: any, { id }: { id: string }) => {
       return await db.proyek.findUnique({

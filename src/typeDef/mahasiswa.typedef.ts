@@ -63,19 +63,6 @@ export const mahasiswaTypedef = `#graphql
     updatedAt: String!
   }
 
-  type Proyek {
-    id: ID!
-    name: String!
-    photo: String
-    pembimbing: Dosen
-    description: String!
-    mahasiswa: Mahasiswa
-    laporans: [Laporan!]
-    biayaOperasional: [BiayaOperasional!]
-    createdAt: String!
-    updatedAt: String!
-    }
-
   type Laporan {
     id: ID!
     photo: String!
