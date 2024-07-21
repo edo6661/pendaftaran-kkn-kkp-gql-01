@@ -4,7 +4,7 @@ export const dosenTypedef = `#graphql
     fullname: String!
     nidn: String!
     proyekId: ID
-    proyek: Proyek
+    proyek: [Proyek]
     userId: ID!
     user: User!
     createdAt: String!
