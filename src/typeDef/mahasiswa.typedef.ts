@@ -10,7 +10,7 @@ export const mahasiswaTypedef = `#graphql
     nim: String!
     fullname: String!
     semester: Int!
-    role: RoleMahasiswa!
+    role: RoleMahasiswa
     
     kelompok: Kelompok
     kelas: Kelas
@@ -46,7 +46,7 @@ export const mahasiswaTypedef = `#graphql
       kelasId: ID,
       angkatanId: ID,
       kelompokId: ID,
-      role: RoleMahasiswa!
+      role: RoleMahasiswa
     ): Mahasiswa
 
     updateMahasiswa(
