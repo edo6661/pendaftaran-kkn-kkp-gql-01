@@ -3,6 +3,7 @@ export const programStudiTypedef = `#graphql
     id: ID!
     name: String!
     fakultas: Fakultas!
+    fakultasId: ID!
     konsentrasi: [Konsentrasi!]!
     mahasiswa: [Mahasiswa!]!
     createdAt: String!
