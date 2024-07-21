@@ -9,8 +9,8 @@ export const mahasiswaTypedef = `#graphql
     prodi: ProgramStudi!
     konsentrasi: Konsentrasi!
     proyek: Proyek
-    laporans: [Laporan!]!
-    biayaOperasionals: [BiayaOperasional!]!
+    laporan: [Laporan!]!
+    biayaOperasional: [BiayaOperasional!]!
     persyaratan: Persyaratan
     pendaftaran: Pendaftaran
     createdAt: String!
