@@ -6,6 +6,7 @@ export const persyaratanTypedef = `#graphql
     keteranganOrangTua: Boolean!
     keteranganKelakuanBaik: Boolean!
     mahasiswa: Mahasiswa!
+    mahasiswaId: ID!
     createdAt: String!
     updatedAt: String!
   }
