@@ -5,7 +5,11 @@ import { db } from "@/lib/db";
 export const persyaratanResolver = {
   Query: {
     persyaratans: async () => {
-      return await db.persyaratan.findMany();
+      return await db.persyaratan.findMany({
+        include: {
+          mahasiswa: true,
+        },
+      });
     },
     getPersyaratan: async (_parent: any, { id }: { id: string }) => {
       return await db.persyaratan.findUnique({
