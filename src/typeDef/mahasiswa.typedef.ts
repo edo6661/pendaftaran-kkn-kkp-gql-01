@@ -1,17 +1,21 @@
 export const mahasiswaTypedef = `#graphql
   type Mahasiswa {
     id: ID!
-    user: User!
-    userId: ID!
-    kelasId: ID
-    angkatanId: ID
-    proyekId: ID
-    kelompokId: ID
     nim: String!
     fullname: String!
     semester: Int!
     role: RoleMahasiswa
+
+    proyekId: ID
+    prodiId: ID
+    kelasId: ID
+    angkatanId: ID
+    kelompokId: ID
+    konsentrasiId: ID
+    proyekId: ID
+    userId: ID!
     
+    user: User
     kelompok: Kelompok
     kelas: Kelas
     angkatan: Angkatan
@@ -40,26 +44,27 @@ export const mahasiswaTypedef = `#graphql
       nim: String!,
       fullname: String!,
       semester: Int!,
-      prodiId: ID!,
+      prodiId: ID,
       konsentrasiId: ID!,
-      proyekId: ID,
       kelasId: ID,
-      angkatanId: ID,
       kelompokId: ID,
+      proyekId: ID,
+      angkatanId: ID,
       role: RoleMahasiswa
     ): Mahasiswa
 
     updateMahasiswa(
       id: ID!,
-      nim: String,
-      fullname: String,
-      semester: Int,
+      userId: ID!,
+      nim: String!,
+      fullname: String!,
+      semester: Int!,
       prodiId: ID,
-      konsentrasiId: ID,
-      proyekId: ID,
+      konsentrasiId: ID!,
       kelasId: ID,
-      angkatanId: ID,
       kelompokId: ID,
+      proyekId: ID,
+      angkatanId: ID,
       role: RoleMahasiswa
     ): Mahasiswa
 

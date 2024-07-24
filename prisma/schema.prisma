@@ -154,15 +154,15 @@ model Proyek {
   id String @default(cuid()) @id
   name String
   photo String
+  description String
+  batasOrang Int
+  verified Boolean @default(false)
+  lokasi String?
   bolehDimulai Boolean @default(false)
   telahSelesai Boolean @default(false)
-  verified Boolean @default(false)
-  description String
-  lokasi String?
   type TypeProyek @default(KKN)
   tanggalMulai DateTime?
   tanggalSelesai DateTime?
-  batasOrang Int
   pembimbing Dosen[]
   mahasiswa Mahasiswa[]
   laporan Laporan[]

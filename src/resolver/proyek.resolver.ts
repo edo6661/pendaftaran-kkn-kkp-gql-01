@@ -1,6 +1,7 @@
 // resolvers/proyek.ts
 
 import { db } from "@/lib/db";
+import { TypeProyek } from "@prisma/client";
 
 export const proyekResolver = {
   Query: {
@@ -11,6 +12,7 @@ export const proyekResolver = {
           mahasiswa: true,
           laporan: true,
           biayaOperasional: true,
+          kelompok: true,
         },
       });
 
@@ -24,6 +26,7 @@ export const proyekResolver = {
           mahasiswa: true,
           laporan: true,
           biayaOperasional: true,
+          kelompok: true,
         },
       });
     },
@@ -42,6 +45,7 @@ export const proyekResolver = {
         tanggalMulai,
         tanggalSelesai,
         telahSelesai,
+        type,
       }: {
         name: string;
         photo: string;
@@ -49,10 +53,11 @@ export const proyekResolver = {
         batasOrang: number;
         verified?: boolean;
         lokasi?: string;
-        tanggalMulai?: string;
-        tanggalSelesai?: string;
+        tanggalMulai?: Date;
+        tanggalSelesai?: Date;
         bolehDimulai?: boolean;
         telahSelesai?: boolean;
+        type?: TypeProyek;
       }
     ) => {
       return await db.proyek.create({
@@ -61,6 +66,7 @@ export const proyekResolver = {
           photo,
           description,
           batasOrang,
+          type,
           ...(verified && { verified }),
           ...(bolehDimulai && { bolehDimulai }),
           ...(lokasi && { lokasi }),
@@ -73,6 +79,7 @@ export const proyekResolver = {
           mahasiswa: true,
           laporan: true,
           biayaOperasional: true,
+          kelompok: true,
         },
       });
     },
@@ -90,6 +97,7 @@ export const proyekResolver = {
         tanggalMulai,
         tanggalSelesai,
         telahSelesai,
+        type,
       }: {
         id: string;
         name?: string;
@@ -98,10 +106,11 @@ export const proyekResolver = {
         batasOrang?: number;
         verified?: boolean;
         lokasi?: string;
-        tanggalMulai?: string;
-        tanggalSelesai?: string;
+        tanggalMulai?: Date;
+        tanggalSelesai?: Date;
         bolehDimulai?: boolean;
         telahSelesai?: boolean;
+        type?: TypeProyek;
       }
     ) => {
       return await db.proyek.update({
@@ -111,6 +120,7 @@ export const proyekResolver = {
           photo,
           description,
           batasOrang,
+          type,
           ...(verified && { verified }),
           ...(bolehDimulai && { bolehDimulai }),
           ...(lokasi && { lokasi }),
@@ -123,6 +133,7 @@ export const proyekResolver = {
           mahasiswa: true,
           laporan: true,
           biayaOperasional: true,
+          kelompok: true,
         },
       });
     },
@@ -134,6 +145,7 @@ export const proyekResolver = {
           mahasiswa: true,
           laporan: true,
           biayaOperasional: true,
+          kelompok: true,
         },
       });
     },

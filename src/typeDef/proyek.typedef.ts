@@ -7,9 +7,9 @@ export const proyekTypedef = `#graphql
     batasOrang: Int!
     verified: Boolean!
     lokasi: String!
-    tanggalMulai: String!
-    tanggalSelesai: String!
-
+    tanggalMulai: DateTime!
+    tanggalSelesai: DateTime!
+    type: TypeProyek!
     bolehDimulai: Boolean!
     telahSelesai: Boolean!
     kelompok: [Kelompok]
@@ -20,6 +20,13 @@ export const proyekTypedef = `#graphql
     createdAt: String!
     updatedAt: String!
   }
+
+  enum TypeProyek {
+    KKN
+    KKP
+  }
+  
+
   
 
   type Query {

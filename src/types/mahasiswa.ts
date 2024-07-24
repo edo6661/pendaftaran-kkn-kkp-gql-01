@@ -16,6 +16,7 @@ export interface CreateMahasiswaArgs {
 
 export interface UpdateMahasiswaArgs {
   id: string;
+  userId: string;
   nim?: string;
   fullname?: string;
   semester?: number;
