@@ -1,6 +1,7 @@
 // resolvers/proyek.ts
 
 import { db } from "@/lib/db";
+import { parseDate } from "@/utils";
 import { TypeProyek } from "@prisma/client";
 
 export const proyekResolver = {
@@ -53,13 +54,16 @@ export const proyekResolver = {
         batasOrang: number;
         verified?: boolean;
         lokasi?: string;
-        tanggalMulai?: Date;
-        tanggalSelesai?: Date;
+        tanggalMulai?: string;
+        tanggalSelesai?: string;
         bolehDimulai?: boolean;
         telahSelesai?: boolean;
         type?: TypeProyek;
       }
     ) => {
+      const tanggalMulaiDate = parseDate(tanggalMulai);
+      const tanggalSelesaiDate = parseDate(tanggalSelesai);
+
       return await db.proyek.create({
         data: {
           name,
@@ -70,8 +74,8 @@ export const proyekResolver = {
           ...(verified && { verified }),
           ...(bolehDimulai && { bolehDimulai }),
           ...(lokasi && { lokasi }),
-          ...(tanggalMulai && { tanggalMulai }),
-          ...(tanggalSelesai && { tanggalSelesai }),
+          ...(tanggalMulaiDate && { tanggalMulai: tanggalMulaiDate }),
+          ...(tanggalSelesaiDate && { tanggalSelesai: tanggalSelesaiDate }),
           ...(telahSelesai && { telahSelesai }),
         },
         include: {
@@ -106,13 +110,18 @@ export const proyekResolver = {
         batasOrang?: number;
         verified?: boolean;
         lokasi?: string;
-        tanggalMulai?: Date;
-        tanggalSelesai?: Date;
+        tanggalMulai?: string;
+        tanggalSelesai?: string;
         bolehDimulai?: boolean;
         telahSelesai?: boolean;
         type?: TypeProyek;
       }
     ) => {
+      const tanggalMulaiDate = tanggalMulai ? new Date(tanggalMulai) : null;
+      const tanggalSelesaiDate = tanggalSelesai
+        ? new Date(tanggalSelesai)
+        : null;
+
       return await db.proyek.update({
         where: { id },
         data: {
@@ -124,8 +133,8 @@ export const proyekResolver = {
           ...(verified && { verified }),
           ...(bolehDimulai && { bolehDimulai }),
           ...(lokasi && { lokasi }),
-          ...(tanggalMulai && { tanggalMulai }),
-          ...(tanggalSelesai && { tanggalSelesai }),
+          ...(tanggalMulaiDate && { tanggalMulai: tanggalMulaiDate }),
+          ...(tanggalSelesaiDate && { tanggalSelesai: tanggalSelesaiDate }),
           ...(telahSelesai && { telahSelesai }),
         },
         include: {
