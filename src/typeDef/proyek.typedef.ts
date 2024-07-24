@@ -1,6 +1,5 @@
 export const proyekTypedef = `#graphql
 
-  scalar Date
 
   type Proyek {
     id: ID!
@@ -10,8 +9,8 @@ export const proyekTypedef = `#graphql
     batasOrang: Int!
     verified: Boolean!
     lokasi: String!
-    tanggalMulai: Date!
-    tanggalSelesai: Date!
+    tanggalMulai: String!
+    tanggalSelesai: String!
     type: TypeProyek!
     bolehDimulai: Boolean!
     telahSelesai: Boolean!
@@ -21,7 +20,7 @@ export const proyekTypedef = `#graphql
     laporans: [Laporan]
     biayaOperasionals: [BiayaOperasional]
     createdAt: String!
-    updatedAt: String!
+    upstringdAt: String!
   }
 
   enum TypeProyek {
@@ -46,14 +45,14 @@ export const proyekTypedef = `#graphql
       verified: Boolean
       bolehDimulai: Boolean
       lokasi: String
-      tanggalMulai: Date
-      tanggalSelesai: Date
+      tanggalMulai: String
+      tanggalSelesai: String
       telahSelesai: Boolean
       type: TypeProyek
 
     ): Proyek
 
-    updateProyek(
+    upstringProyek(
       id: ID!,
       name: String,
       photo: String,
@@ -62,8 +61,8 @@ export const proyekTypedef = `#graphql
       verified: Boolean
       bolehDimulai: Boolean
       lokasi: String
-      tanggalMulai: Date
-      tanggalSelesai: Date
+      tanggalMulai: String
+      tanggalSelesai: String
       telahSelesai: Boolean
       type: TypeProyek
 
