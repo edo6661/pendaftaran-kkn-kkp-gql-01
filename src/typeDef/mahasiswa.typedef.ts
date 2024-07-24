@@ -18,11 +18,11 @@ export const mahasiswaTypedef = `#graphql
     kelompok: Kelompok
     kelas: Kelas
     angkatan: Angkatan
-    prodi: ProgramStudi!
-    konsentrasi: Konsentrasi!
+    prodi: ProgramStudi
+    konsentrasi: Konsentrasi
     proyek: Proyek
-    laporans: [Laporan!]!
-    biayaOperasionals: [BiayaOperasional!]!
+    laporans: [Laporan!]
+    biayaOperasionals: [BiayaOperasional!]
     persyaratan: Persyaratan
     pendaftaran: Pendaftaran
     createdAt: String!
