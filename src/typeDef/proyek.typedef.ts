@@ -20,7 +20,7 @@ export const proyekTypedef = `#graphql
     laporans: [Laporan]
     biayaOperasionals: [BiayaOperasional]
     createdAt: String!
-    upstringdAt: String!
+    updatedAt: String!
   }
 
   enum TypeProyek {
@@ -52,7 +52,7 @@ export const proyekTypedef = `#graphql
 
     ): Proyek
 
-    upstringProyek(
+    updateProyek(
       id: ID!,
       name: String,
       photo: String,
