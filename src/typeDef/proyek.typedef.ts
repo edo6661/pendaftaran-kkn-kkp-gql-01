@@ -2,18 +2,18 @@ export const proyekTypedef = `#graphql
 
 
   type Proyek {
-    id: ID!
-    name: String!
+    id: ID
+    name: String
     photo: String
     description: String
-    batasOrang: Int!
-    verified: Boolean!
-    lokasi: String!
-    tanggalMulai: String!
-    tanggalSelesai: String!
+    batasOrang: Int
+    verified: Boolean
+    lokasi: String
+    tanggalMulai: String
+    tanggalSelesai: String
     type: TypeProyek!
-    bolehDimulai: Boolean!
-    telahSelesai: Boolean!
+    bolehDimulai: Boolean
+    telahSelesai: Boolean
     kelompok: [Kelompok]
     pembimbing: [Dosen]
     mahasiswa: [Mahasiswa]
