@@ -12,7 +12,6 @@ export const mahasiswaTypedef = `#graphql
     angkatanId: ID
     kelompokId: ID
     konsentrasiId: ID
-    proyekId: ID
     userId: ID!
     
     user: User
