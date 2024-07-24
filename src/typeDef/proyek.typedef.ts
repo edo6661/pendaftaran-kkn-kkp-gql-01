@@ -1,4 +1,7 @@
 export const proyekTypedef = `#graphql
+
+  scalar Date
+
   type Proyek {
     id: ID!
     name: String!
