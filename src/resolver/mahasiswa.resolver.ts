@@ -31,18 +31,21 @@ export const mahasiswaResolver = {
           throw new Error("User not found");
         }
 
-        const existingProdi = await db.programStudi.findUnique({
-          where: { id: args.prodiId },
-        });
-        if (!existingProdi) {
-          throw new Error("Program Studi not found");
+        if (args.prodiId) {
+          const existingProdi = await db.programStudi.findUnique({
+            where: { id: args.prodiId },
+          });
+          if (!existingProdi) {
+            throw new Error("Program Studi not found");
+          }
         }
-
-        const existingKonsentrasi = await db.konsentrasi.findUnique({
-          where: { id: args.konsentrasiId },
-        });
-        if (!existingKonsentrasi) {
-          throw new Error("Konsentrasi not found");
+        if (args.konsentrasiId) {
+          const existingKonsentrasi = await db.konsentrasi.findUnique({
+            where: { id: args.konsentrasiId },
+          });
+          if (!existingKonsentrasi) {
+            throw new Error("Konsentrasi not found");
+          }
         }
 
         if (args.proyekId) {

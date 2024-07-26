@@ -5,8 +5,8 @@ export interface CreateMahasiswaArgs {
   nim: string;
   fullname: string;
   semester: number;
-  prodiId: string;
-  konsentrasiId: string;
+  prodiId?: string;
+  konsentrasiId?: string;
   proyekId?: string;
   kelasId?: string;
   angkatanId?: string;
