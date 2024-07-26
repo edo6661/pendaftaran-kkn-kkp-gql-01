@@ -57,8 +57,8 @@ model Mahasiswa {
   fullname String
   semester Int
   role RoleMahasiswa @default(ANGGOTA)
-  prodiId String
-  konsentrasiId String
+  prodiId String?
+  konsentrasiId String?
   kelasId String?
   angkatanId String?
   kelompokId String?
@@ -67,8 +67,8 @@ model Mahasiswa {
   biayaOperasionals BiayaOperasional[]
   persyaratan Persyaratan?
   pendaftaran Pendaftaran?
-  prodi ProgramStudi @relation(fields: [prodiId], references: [id])
-  konsentrasi Konsentrasi @relation(fields: [konsentrasiId], references: [id])
+  prodi ProgramStudi? @relation(fields: [prodiId], references: [id])
+  konsentrasi Konsentrasi? @relation(fields: [konsentrasiId], references: [id])
   proyek Proyek? @relation(fields: [proyekId], references: [id])
   kelas Kelas? @relation(fields: [kelasId], references: [id])
   angkatan Angkatan? @relation(fields: [angkatanId], references: [id])
