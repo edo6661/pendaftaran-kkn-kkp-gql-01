@@ -44,7 +44,7 @@ export const mahasiswaTypedef = `#graphql
       fullname: String!,
       semester: Int!,
       prodiId: ID,
-      konsentrasiId: ID!,
+      konsentrasiId: ID,
       kelasId: ID,
       kelompokId: ID,
       proyekId: ID,
