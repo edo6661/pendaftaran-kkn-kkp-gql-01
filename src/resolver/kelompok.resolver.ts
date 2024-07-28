@@ -6,16 +6,22 @@ import { IContext } from "@/types/express";
 export const kelompokResolver = {
   Query: {
     kelompoks: async () => {
-      return await db.kelompok.findMany({
+      const res = await db.kelompok.findMany({
         include: {
           mahasiswa: true,
           proyek: true,
         },
       });
+      console.log(res);
+      return res;
     },
     kelompok: async (_parent: any, { id }: { id: string }) => {
       return await db.kelompok.findUnique({
         where: { id },
+        include: {
+          mahasiswa: true,
+          proyek: true,
+        },
       });
     },
   },
