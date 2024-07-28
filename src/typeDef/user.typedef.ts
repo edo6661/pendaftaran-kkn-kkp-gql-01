@@ -6,6 +6,10 @@ export const userTypedef = `#graphql
     password: String!
     role: Role!
     profilePhoto: String
+    mahasiswa: Mahasiswa
+    dosen: Dosen
+    admin: Admin
+
   }
   enum Role {
     ADMIN
