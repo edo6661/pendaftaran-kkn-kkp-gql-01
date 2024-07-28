@@ -43,6 +43,7 @@ export const userResolver = {
       const { username, password } = signInInput;
       const existingUser = await db.user.findFirst({
         where: { username },
+        include: userIncludeConfig,
       });
       if (!existingUser) throw new Error("User not found");
       const matchPassword = await comparePassword(
