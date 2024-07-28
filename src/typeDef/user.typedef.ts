@@ -9,7 +9,6 @@ export const userTypedef = `#graphql
     mahasiswa: Mahasiswa
     dosen: Dosen
     admin: Admin
-
   }
   enum Role {
     ADMIN

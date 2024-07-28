@@ -9,6 +9,9 @@ export const userIncludeConfig = {
       biayaOperasionals: true,
       persyaratan: true,
       pendaftaran: true,
+      kelompok: true,
+      kelas: true,
+      angkatan: true,
     },
   },
   dosen: {
