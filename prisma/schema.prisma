@@ -198,7 +198,7 @@ model Persyaratan {
   keteranganOrangTua Boolean @default(false)
   keteranganKelakuanBaik Boolean @default(false)
   mahasiswaId String @unique
-  mahasiswa Mahasiswa @relation(fields: [mahasiswaId], references: [id])
+  mahasiswa Mahasiswa @relation(fields: [mahasiswaId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
