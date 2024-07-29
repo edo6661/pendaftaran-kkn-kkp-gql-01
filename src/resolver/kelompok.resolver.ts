@@ -12,7 +12,6 @@ export const kelompokResolver = {
           proyek: true,
         },
       });
-      console.log(res);
       return res;
     },
     kelompok: async (_parent: any, { id }: { id: string }) => {
@@ -28,19 +27,36 @@ export const kelompokResolver = {
   Mutation: {
     createKelompok: async (
       _parent: any,
-      { name, proyekId }: { name: string; proyekId: string },
+      {
+        name,
+        proyekId,
+        nilai,
+        feedback,
+      }: { name: string; proyekId: string; nilai?: number; feedback?: string },
       _context: IContext
     ) => {
       return await db.kelompok.create({
         data: {
           name,
           proyekId,
+          nilai,
+          feedback,
         },
       });
     },
     updateKelompok: async (
       _parent: any,
-      { id, name, proyekId }: { id: string; name?: string; proyekId?: string },
+      {
+        id,
+        name,
+        proyekId,
+      }: {
+        id: string;
+        name?: string;
+        proyekId?: string;
+        nilai?: number;
+        feedback?: string;
+      },
       _context: IContext
     ) => {
       return await db.kelompok.update({
@@ -48,6 +64,8 @@ export const kelompokResolver = {
         data: {
           name,
           proyekId,
+          nilai,
+          feedback,
         },
       });
     },

@@ -2,6 +2,8 @@ export const kelompokTypedef = `#graphql
   type Kelompok {
     id: ID!
     name: String!
+    nilai: Int
+    feedback: String
     mahasiswa: [Mahasiswa]
     proyek: Proyek
     proyekId: ID

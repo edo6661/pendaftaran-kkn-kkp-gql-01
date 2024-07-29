@@ -102,6 +102,8 @@ model Kelompok {
   id String @default(cuid()) @id
   name String
   mahasiswa Mahasiswa[]
+  nilai Int?
+  feedback String?
   proyekId String?
   proyek Proyek? @relation(fields: [proyekId], references: [id])
   createdAt DateTime @default(now())
