@@ -17,8 +17,10 @@ export const kelompokTypedef = `#graphql
   }
 
   type Mutation {
-    createKelompok(name: String!, proyekId: ID): Kelompok
-    updateKelompok(id: ID!, name: String, proyekId: ID): Kelompok
+    createKelompok
+    (name: String!, proyekId: ID, nilai: Int, feedback: String): Kelompok
+    updateKelompok
+    (id: ID!, name: String, proyekId: ID, nilai: Int, feedback: String): Kelompok
     deleteKelompok(id: ID!): Kelompok
   }
 `;
