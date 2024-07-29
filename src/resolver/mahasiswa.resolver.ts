@@ -83,20 +83,23 @@ export const mahasiswaResolver = {
     updateMahasiswa: async (_parent: any, args: UpdateMahasiswaArgs) => {
       const { id, ...data } = args;
       try {
-        const existingProdi = await db.programStudi.findUnique({
-          where: { id: args.prodiId },
-        });
-        if (!existingProdi) {
-          throw new Error("Program Studi not found");
+        if (args.prodiId) {
+          const existingProdi = await db.programStudi.findUnique({
+            where: { id: args.prodiId },
+          });
+          if (!existingProdi) {
+            throw new Error("Program Studi not found");
+          }
         }
 
-        const existingKonsentrasi = await db.konsentrasi.findUnique({
-          where: { id: args.konsentrasiId },
-        });
-        if (!existingKonsentrasi) {
-          throw new Error("Konsentrasi not found");
+        if (args.konsentrasiId) {
+          const existingKonsentrasi = await db.konsentrasi.findUnique({
+            where: { id: args.konsentrasiId },
+          });
+          if (!existingKonsentrasi) {
+            throw new Error("Konsentrasi not found");
+          }
         }
-
         if (args.proyekId) {
           const existingProyek = await db.proyek.findUnique({
             where: { id: args.proyekId },
