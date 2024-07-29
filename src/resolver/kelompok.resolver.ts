@@ -50,6 +50,8 @@ export const kelompokResolver = {
         id,
         name,
         proyekId,
+        nilai,
+        feedback,
       }: {
         id: string;
         name?: string;
