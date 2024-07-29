@@ -54,7 +54,7 @@ export const mahasiswaTypedef = `#graphql
 
     updateMahasiswa(
       id: ID!,
-      userId: ID!,
+      userId: ID,
       nim: String,
       fullname: String,
       semester: Int,
