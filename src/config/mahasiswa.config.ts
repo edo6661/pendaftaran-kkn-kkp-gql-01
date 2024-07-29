@@ -9,4 +9,7 @@ export const includeMahasiswa = {
   biayaOperasionals: true,
   persyaratan: true,
   pendaftaran: true,
+  kelompok: true,
+  angkatan: true,
+  kelas: true,
 };
