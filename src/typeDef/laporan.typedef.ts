@@ -3,6 +3,7 @@ export const laporanTypedef = `#graphql
     id: ID!
     photo: String
     file: String
+    feedback: String
     proyekId: ID!
     proyek: Proyek
     mahasiswaId: ID!
@@ -30,6 +31,7 @@ export const laporanTypedef = `#graphql
       id: ID!,
       photo: String,
       file: String,
+      feedback: String,
       proyekId: ID,
       mahasiswaId: ID
     ): Laporan

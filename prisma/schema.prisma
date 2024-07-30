@@ -182,11 +182,12 @@ enum TypeProyek {
 
 model Laporan {
   id String @default(cuid()) @id
-  photo String
-  file String
+  photo String? @default("https://i.pinimg.com/564x/fc/68/c7/fc68c7853d0b5ecd72df224a7fe57071.jpg")
+  file String?
   proyekId String
-  proyek Proyek @relation(fields: [proyekId], references: [id])
+  feedback String?
   mahasiswaId String 
+  proyek Proyek @relation(fields: [proyekId], references: [id])
   mahasiswa Mahasiswa @relation(fields: [mahasiswaId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
