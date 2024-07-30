@@ -3,8 +3,9 @@ export const laporanTypedef = `#graphql
     id: ID!
     photo: String
     file: String
-    proyek: Proyek!
-    mahasiswa: Mahasiswa!
+    proyekId: ID!
+    proyek: Proyek
+    mahasiswa: Mahasiswa
     createdAt: String!
     updatedAt: String!
   }
@@ -19,7 +20,7 @@ export const laporanTypedef = `#graphql
       photo: String,
       file: String,
       proyekId: ID!,
-      mahasiswaId: ID!
+      mahasiswaId: ID!,
     ): Laporan
 
     updateLaporan(
