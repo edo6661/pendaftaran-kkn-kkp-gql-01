@@ -13,7 +13,11 @@ export const proyekResolver = {
           mahasiswa: true,
           laporan: true,
           biayaOperasional: true,
-          kelompok: true,
+          kelompok: {
+            include: {
+              mahasiswa: true,
+            },
+          },
         },
       });
 
@@ -27,7 +31,11 @@ export const proyekResolver = {
           mahasiswa: true,
           laporan: true,
           biayaOperasional: true,
-          kelompok: true,
+          kelompok: {
+            include: {
+              mahasiswa: true,
+            },
+          },
         },
       });
     },

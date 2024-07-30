@@ -9,7 +9,11 @@ export const includeMahasiswa = {
   biayaOperasionals: true,
   persyaratan: true,
   pendaftaran: true,
-  kelompok: true,
+  kelompok: {
+    include: {
+      mahasiswa: true,
+    },
+  },
   angkatan: true,
   kelas: true,
 };
