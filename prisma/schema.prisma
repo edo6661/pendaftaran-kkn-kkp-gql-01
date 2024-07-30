@@ -186,7 +186,7 @@ model Laporan {
   file String
   proyekId String
   proyek Proyek @relation(fields: [proyekId], references: [id])
-  mahasiswaId String @unique
+  mahasiswaId String 
   mahasiswa Mahasiswa @relation(fields: [mahasiswaId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
