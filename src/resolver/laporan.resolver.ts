@@ -63,12 +63,14 @@ export const laporanResolver = {
         file,
         proyekId,
         mahasiswaId,
+        feedback,
       }: {
         id: string;
         photo?: string;
         file?: string;
         proyekId?: string;
         mahasiswaId?: string;
+        feedback?: string;
       }
     ) => {
       return await db.laporan.update({
@@ -78,6 +80,7 @@ export const laporanResolver = {
           file,
           proyekId,
           mahasiswaId,
+          feedback,
         },
         include: {
           proyek: true,
