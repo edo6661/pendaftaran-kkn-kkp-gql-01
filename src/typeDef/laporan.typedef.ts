@@ -13,6 +13,8 @@ export const laporanTypedef = `#graphql
   type Query {
     laporans: [Laporan!]!
     getLaporan(id: ID!): Laporan
+    getLaporanByProyekId(proyekId: ID!): [Laporan!]!
+    
   }
 
   type Mutation {

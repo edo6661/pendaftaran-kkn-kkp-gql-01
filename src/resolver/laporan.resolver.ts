@@ -14,6 +14,18 @@ export const laporanResolver = {
         },
       });
     },
+    getLaporanByProyekId: async (
+      _parent: any,
+      { proyekId }: { proyekId: string }
+    ) => {
+      return await db.laporan.findMany({
+        where: { proyekId },
+        include: {
+          proyek: true,
+          mahasiswa: true,
+        },
+      });
+    },
   },
   Mutation: {
     createLaporan: async (
