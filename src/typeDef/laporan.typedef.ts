@@ -5,6 +5,7 @@ export const laporanTypedef = `#graphql
     file: String
     proyekId: ID!
     proyek: Proyek
+    mahasiswaId: ID!
     mahasiswa: Mahasiswa
     createdAt: String!
     updatedAt: String!
