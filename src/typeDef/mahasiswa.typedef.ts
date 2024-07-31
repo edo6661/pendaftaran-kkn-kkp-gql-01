@@ -13,6 +13,7 @@ export const mahasiswaTypedef = `#graphql
     kelompokId: ID
     konsentrasiId: ID
     userId: ID!
+    nilai: Int
     
     user: User
     kelompok: Kelompok
@@ -64,6 +65,7 @@ export const mahasiswaTypedef = `#graphql
       kelompokId: ID,
       proyekId: ID,
       angkatanId: ID,
+      nilai: Int,
       role: RoleMahasiswa
     ): Mahasiswa
 

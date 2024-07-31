@@ -18,6 +18,7 @@ export interface UpdateMahasiswaArgs {
   id: string;
   userId: string;
   nim?: string;
+  nilai?: number;
   fullname?: string;
   semester?: number;
   prodiId?: string;
