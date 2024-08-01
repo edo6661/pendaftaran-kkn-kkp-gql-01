@@ -21,7 +21,7 @@ export const configurePassport = async () => {
         where: { id: user.id },
         include: userIncludeConfig,
       });
-      if (!existingUser) throw new Error("User not found");
+      if (!existingUser) throw new Error("User not found from passport");
       done(null, existingUser);
     } catch (err) {
       done(err, null);
