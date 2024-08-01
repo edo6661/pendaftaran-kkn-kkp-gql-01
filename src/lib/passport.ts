@@ -10,7 +10,7 @@ import { userIncludeConfig } from "@/config/user";
 export const configurePassport = async () => {
   passport.serializeUser((user, done) => {
     // console.log("SERIALIZE USER", user);
-    if (!user) throw new Error("User not found");
+    if (!user) throw new Error("User not found from serializeUser");
     done(null, user);
   });
 
@@ -21,7 +21,7 @@ export const configurePassport = async () => {
         where: { id: user.id },
         include: userIncludeConfig,
       });
-      if (!existingUser) throw new Error("User not found from passport");
+      if (!existingUser) throw new Error("User not found from deserializeUser");
       done(null, existingUser);
     } catch (err) {
       done(err, null);
@@ -39,7 +39,7 @@ export const configurePassport = async () => {
           },
           include: userIncludeConfig,
         });
-        if (!user) throw new Error("User not found");
+        if (!user) throw new Error("User not found from passport strategy");
         const isPasswordValid = await comparePassword(
           (await password) as string,
           user.password
