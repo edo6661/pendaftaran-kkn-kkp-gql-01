@@ -51,7 +51,8 @@ export const userResolver = {
         password,
         existingUser.password
       );
-      if (!matchPassword) throw new Error("Password is invalid");
+      if (!matchPassword)
+        throw new Error("Password is invalid from sign in resolver");
 
       const { user, info } = await context.authenticate("graphql-local", {
         // @ts-ignore

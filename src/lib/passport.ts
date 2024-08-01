@@ -44,7 +44,8 @@ export const configurePassport = async () => {
           (await password) as string,
           user.password
         );
-        if (!isPasswordValid) throw new Error("Password is invalid");
+        if (!isPasswordValid)
+          throw new Error("Password is invalid from passport strategy");
         return done(null, user);
       } catch (err) {
         return done(err);
