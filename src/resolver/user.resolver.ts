@@ -51,8 +51,7 @@ export const userResolver = {
         password,
         existingUser.password
       );
-      if (!matchPassword)
-        throw new Error("Password is invalid from sign in resolver");
+      if (!matchPassword) throw new Error("Password is invalid");
 
       const { user, info } = await context.authenticate("graphql-local", {
         // @ts-ignore
@@ -66,8 +65,7 @@ export const userResolver = {
     },
     signUp: async (
       _parent: any,
-      { signUpInput }: { signUpInput: SignUpInput },
-      context: IContext
+      { signUpInput }: { signUpInput: SignUpInput }
     ) => {
       const { username, email, password, role } = signUpInput;
       const existingUser = await db.user.findFirst({
@@ -76,7 +74,8 @@ export const userResolver = {
       if (existingUser) throw new Error("Username is already taken");
 
       const hashedPassword = await hashPassword(password);
-      await db.user.create({
+
+      return await db.user.create({
         data: {
           username,
           email,
@@ -84,17 +83,6 @@ export const userResolver = {
           role,
         },
       });
-      const { user, info } = await context.authenticate("graphql-local", {
-        // @ts-ignore
-        username,
-        password: hashedPassword,
-      });
-      await context.login(user!);
-
-      console.log("INFO FROM RESOLVER", info);
-      console.log("USER FROM RESOLVER", user);
-
-      return user;
     },
 
     signOut: async (_parent: any, _args: any, context: IContext) => {
