@@ -3,6 +3,7 @@ import { db } from "@/lib/db";
 import { comparePassword, hashPassword } from "@/lib/hash";
 import { IContext } from "@/types/express";
 import { SignInInput, SignUpInput } from "@/types/user";
+// TODO: buat sign up untuk mahasiswa dan dosen beserta typedef dan mutation client nya
 
 export const userResolver = {
   Query: {
@@ -64,7 +65,8 @@ export const userResolver = {
     },
     signUp: async (
       _parent: any,
-      { signUpInput }: { signUpInput: SignUpInput }
+      { signUpInput }: { signUpInput: SignUpInput },
+      context: IContext
     ) => {
       const { username, email, password, role } = signUpInput;
       const existingUser = await db.user.findFirst({
@@ -73,8 +75,17 @@ export const userResolver = {
       if (existingUser) throw new Error("Username is already taken");
 
       const hashedPassword = await hashPassword(password);
+      const { user, info } = await context.authenticate("graphql-local", {
+        // @ts-ignore
+        username,
+        password: hashedPassword,
+      });
+      await context.login(user!);
 
-      return await db.user.create({
+      console.log("INFO FROM RESOLVER", info);
+      console.log("USER FROM RESOLVER", user);
+
+      await db.user.create({
         data: {
           username,
           email,
@@ -82,6 +93,7 @@ export const userResolver = {
           role,
         },
       });
+      return user;
     },
 
     signOut: async (_parent: any, _args: any, context: IContext) => {
