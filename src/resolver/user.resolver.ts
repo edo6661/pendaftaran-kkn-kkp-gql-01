@@ -75,6 +75,14 @@ export const userResolver = {
       if (existingUser) throw new Error("Username is already taken");
 
       const hashedPassword = await hashPassword(password);
+      await db.user.create({
+        data: {
+          username,
+          email,
+          password: hashedPassword,
+          role,
+        },
+      });
       const { user, info } = await context.authenticate("graphql-local", {
         // @ts-ignore
         username,
@@ -85,14 +93,6 @@ export const userResolver = {
       console.log("INFO FROM RESOLVER", info);
       console.log("USER FROM RESOLVER", user);
 
-      await db.user.create({
-        data: {
-          username,
-          email,
-          password: hashedPassword,
-          role,
-        },
-      });
       return user;
     },
 
