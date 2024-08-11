@@ -70,6 +70,24 @@ export const dosenResolver = {
         proyekId?: string;
       }
     ) => {
+      const editedDosen = await db.dosen.findUnique({
+        where: {
+          id,
+        },
+      });
+      if (!editedDosen) {
+        throw new Error("Dosen not found");
+      }
+      if (editedDosen.nidn !== nidn) {
+        const dosenExist = await db.dosen.findFirst({
+          where: {
+            nidn: nidn,
+          },
+        });
+        if (dosenExist) {
+          throw new Error("NIDN already exists");
+        }
+      }
       return await db.dosen.update({
         where: { id },
         data: {
