@@ -83,6 +83,28 @@ export const mahasiswaResolver = {
     updateMahasiswa: async (_parent: any, args: UpdateMahasiswaArgs) => {
       const { id, ...data } = args;
       try {
+        const editedMahasiswa = await db.mahasiswa.findUnique({
+          where: { id },
+        });
+        if (!editedMahasiswa) {
+          throw new Error("Mahasiswa not found");
+        }
+        if (data.nim !== editedMahasiswa.nim) {
+          const nimExist = await db.mahasiswa.findFirst({
+            where: { nim: data.nim },
+          });
+          if (nimExist) {
+            throw new Error("NIM already exists");
+          }
+        }
+        if (data.userId) {
+          const existingUser = await db.user.findUnique({
+            where: { id: data.userId },
+          });
+          if (!existingUser) {
+            throw new Error("User not found");
+          }
+        }
         if (args.prodiId) {
           const existingProdi = await db.programStudi.findUnique({
             where: { id: args.prodiId },
