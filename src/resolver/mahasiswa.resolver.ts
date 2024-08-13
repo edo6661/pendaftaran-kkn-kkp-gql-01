@@ -89,19 +89,19 @@ export const mahasiswaResolver = {
         if (!editedMahasiswa) {
           throw new Error("Mahasiswa not found");
         }
-        if (data.nim) {
-          if (data.nim !== editedMahasiswa.nim) {
+        if (args.nim) {
+          if (args.nim !== editedMahasiswa.nim) {
             const nimExist = await db.mahasiswa.findFirst({
-              where: { nim: data.nim },
+              where: { nim: args.nim },
             });
             if (nimExist) {
               throw new Error("NIM already exists");
             }
           }
         }
-        if (data.userId) {
+        if (args.userId) {
           const existingUser = await db.user.findUnique({
-            where: { id: data.userId },
+            where: { id: args.userId },
           });
           if (!existingUser) {
             throw new Error("User not found");
