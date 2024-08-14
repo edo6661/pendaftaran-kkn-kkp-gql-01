@@ -68,12 +68,12 @@ model Mahasiswa {
   biayaOperasionals BiayaOperasional[]
   persyaratan Persyaratan?
   pendaftaran Pendaftaran?
-  prodi ProgramStudi? @relation(fields: [prodiId], references: [id])
-  konsentrasi Konsentrasi? @relation(fields: [konsentrasiId], references: [id])
-  proyek Proyek? @relation(fields: [proyekId], references: [id])
-  kelas Kelas? @relation(fields: [kelasId], references: [id])
-  angkatan Angkatan? @relation(fields: [angkatanId], references: [id])
-  kelompok Kelompok? @relation(fields: [kelompokId], references: [id])
+  prodi ProgramStudi? @relation(fields: [prodiId], references: [id],onDelete: Cascade)
+  konsentrasi Konsentrasi? @relation(fields: [konsentrasiId], references: [id], onDelete: Cascade)
+  proyek Proyek? @relation(fields: [proyekId], references: [id], onDelete: Cascade)
+  kelas Kelas? @relation(fields: [kelasId], references: [id], onDelete: Cascade)
+  angkatan Angkatan? @relation(fields: [angkatanId], references: [id], onDelete: Cascade)
+  kelompok Kelompok? @relation(fields: [kelompokId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
